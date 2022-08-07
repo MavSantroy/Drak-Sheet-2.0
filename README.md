@@ -209,6 +209,17 @@ This should also be a good place to keep track of contacts known, locations, etc
 --------------------------------------------------
 --------------------------------------------------
 
+4. Progression.
+
+Each skill falls under "how dificult is it to learn?". Each level costs ability points, and the amount of ability points progressively get more difficult until it hits a certain cost, and then resets.  So the easy progression tree would be 1, 2, 3, 4, 1.
+
+There is an impossible progression tree, which just continues as 1 - 256.  
+
+I have the code for how to do this on an older sheet. But I couldn't figure out how to make it work with this new one.  I've uploaded the old sheet, labeled OLD in the repository.
+
+Additionally, I would like the option to be able to add a 2nd progression tree option. There are specific points where they can choose to have some feature, or they come accross an instructor who can teach that ability fast and with "less ability points". So some kind of checkbox that reveals all of the progression calculations? 
+
+We can talk about this some more too.
 
 
 
