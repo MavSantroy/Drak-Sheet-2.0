@@ -1,0 +1,1650 @@
+<!--
+    
+    TO DO
+    1. add armor/shield defense scores 
+    2. do the armor section
+    3. do the shield section
+    4. artifacts section (repeating field)
+    5. weapons section (repeating fields)
+    6. PSIONICS (Repeating Field? Dropdown to select psionic for each)
+
+-->
+
+<input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="character"  />
+<div style="padding-left: 15em;">
+    <button class="sheet-button-roll" type="action" name="act_character" >Character</button>           
+    <button class="sheet-button-roll" type="action" name="act_equipped" >Equipped</button>
+    <button class="sheet-button-roll" type="action" name="act_editskills" >Skills</button>
+    <button class="sheet-button-roll" type="action" name="act_inventory" >Inventory</button>
+    <button class="sheet-button-roll" type="action" name="act_editcharacter" >Edit Character</button>    
+    <button class="sheet-button-roll" type="action" name="act_editpsionics" >Edit Psionics</button>    
+    
+</div>
+
+<div class="sheet-character"> 
+    <div class="sheet-grid-section">        
+        <div class="sheet-core-stats sheet-block" style="text-align: center;">        
+            <h3>ATTRIBUTES</h3>                    
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Rolls Strength}} {{roll=[[1d20+@{strength}]]}}"></button>
+            <button class="sheet-button-roll" style="width: 55px"  type="roll" value="&{template:default} {{name=@{character_name} rolls Strength}} {{roll=[[1d20+@{racial_str}+@{genetic_engineering_str}+@{cybernetics_str}+@{psi_body_discipline_strength}+@{psi_telekinesis_augment}+@{misc_str}]]}}"><span style="font-size: small;"> STR</button>
+                <span disabled></span>
+            <button class="sheet-button-roll" style="width: 55px" type="roll" value="&{template:default} {{name=@{character_name} rolls Dexterity}} {{roll=[[1d20+@{dexterity}]]}}"><span style="font-size: small;"> DEX</button>
+                <span disabled></span>
+            <button class="sheet-button-roll" style="width: 55px" type="roll" value="&{template:default} {{name=@{character_name} rolls Strength}} {{roll=[[1d20+@{constitution}]]}}"><span style="font-size: small;"> CON</button>
+                <span disabled></span>
+            <button class="sheet-button-roll" style="width: 55px" type="roll" value="&{template:default} {{name=@{character_name} rolls Intelligence}} {{roll=[[1d20+@{intelligence}]]}}"><span style="font-size: small;"> INT</button>
+                <span disabled></span>
+            <button class="sheet-button-roll" style="width: 55px" type="roll" value="&{template:default} {{name=@{character_name} rolls Wisdom}} {{roll=[[1d20+@{wisdom}]]}}"><span style="font-size: small;"> WIS</button>
+                <span disabled></span>
+            <button class="sheet-button-roll" style="width: 55px" type="roll" value="&{template:default} {{name=@{character_name} rolls Charisma}} {{roll=[[1d20+@{charisma}]]}}"><span style="font-size: small;"> CHA</button>          
+                <span disabled></span>
+            
+            <!-- PSIONICS LIFE ENERGY QUICK REFENCE... This may move -->
+
+            <span class="sheet-blue-color" style="font-size: x-small; padding-top: 7px; grid-column: 1 / -1;">LE / Full</span>
+                <input class="sheet-inputfield sheet-blue-color" type="number" style="text-align: right; width: 4.5em;" name="attr_life_energy" value="0"><span class="sheet-inputfield sheet-blue-color" type="number" style="text-align:center; width: 4em; padding-top:5px;" name="attr_life_energy_full" value="@{life_energy_full}" disabled></span>
+            <span class="sheet-blue-color" style="padding-top: 5px;">Raw Energy</span>
+                <input class="sheet-inputfield sheet-blue-color" type="number" style="text-align:right; width: 4em;" name="attr_raw_energy" value="@{raw_energy}" disabled>            
+            <span class="sheet-blue-color" style="font-size: small;">Sphere of Influence</span>
+                <input class="sheet-inputfield sheet-blue-color" type="number" style="text-align:right; width: 4em; padding-top:5px;" name="attr_sphere" value="floor(5+@{raw_energy}/2)" disabled>            
+                
+            
+        </div>   
+        <div class="sheet-defense sheet-block" style="text-align: left;">
+            <h3>HEALTH</h3>                                    
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 1;">Current HP<input class="sheet-inputfield sheet-blue-color" title="Your current HP after taking damage" type="number" name="attr_health" style="text-align: center; width: 6em"></span>
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 2;">Health Max<input class="sheet-inputfield sheet-blue-color" title="Your max HP, including any artifiacts, etc" type="number" name="attr_health_max" value="attr_health_max" style="text-align: center; width: 6em"></span>
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 3;">Temp HP<input class="sheet-inputfield sheet-blue-color" title="Additional HP gained from stimulants and other sources" type="number" name="attr_temp_hp" style="text-align: center; width: 6em;"></span>
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 1;">Less Damge<input class="sheet-inputfield sheet-blue-color" title="Natural Damage Reduction" type="number" name="attr_damage_reduction" value="floor((@{psi_body_discipline}*@{psi_deflection})+@{damage_reduction_artifact}+@{damage_reduction_misc}+(@{constitution}/2))" style="text-align: center; width: 6em;" disabled></span>                        
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 2;">Regeneration<input class="sheet-inputfield sheet-blue-color" title="Natural Regeneration including Body Discipline" type="number" name="attr_movement" value="(@{constitution}/2)+(@{psi_body_discipline_regeneration}+@{regeneration_misc}+@{regeneration_artifact})" style="text-align: center; width: 5em;" disabled></span>
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 3;">Penetration Plus<input class="sheet-inputfield sheet-blue-color" title="Unarmored P+" type="number" name="attr_penetration_plus" value="floor(@{penetration_plus}/10)+(@{penetration_plus_artifact}+@{penetration_plus_misc})" style="text-align: center; width: 5em;" disabled></span>            
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 1;">Movement<input class="sheet-inputfield sheet-blue-color" title="Your Hero's movment measured in feet"type="number" name="attr_movement" value="(3+@{dexterity}+@{psi_telekinesis_augment}+@{movement_bonus_misc})" style="text-align: center; width: 5em;" disabled></span>                        
+            <span class="sheet-blue-color"   style="text-align: center; grid-column: 2;">Armored Def<input class="sheet-inputfield sheet-blue-color" title="Ranged Defense Score without armor and shields" type="number" name="attr_ranged_defense" value="floor(10+@{dexterity}+@{psi_deflection}+@{ranged_def_misc})" style="text-align: center; width: 6em;" disabled></span>            
+            <span disabled></span>
+            
+            <h4 class="sheet-subheading sheet-gold-color" style="grid-column: 2;">Saving Throws</h4>
+            <span disabled></span>
+            <!-- SAVING THROWS -->
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Strength Saving Throw}} {{roll=[[1d20+@{strength}+@{psi_body_discipline}+@{psi_deflection}]]}}"><span style="font-size: small; padding-left:10px;">STR</button>
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Dexterity Saving Throw}} {{roll=[[1d20+@{dexterity}+@{psi_body_discipline}+@{psi_deflection}]]}}"><span style="font-size: small; padding-left:10px;">DEX</button></span>
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Constitution Saving Throw}} {{roll=[[1d20+@{constitution}+@{psi_body_discipline}+@{psi_deflection}]]}}"><span style="font-size: small; padding-left:10px;">CON</button></span>
+            
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Intelligence Saving Throw}} {{roll=[[1d20+@{intelligence}+@{psi_clairvoyance}+@{psi_deflection}]]}}""><span style="font-size: small; padding-left:10px;">INT</button></span>
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Wisdom Saving Throw}} {{roll=[[1d20+@{wisdom}+@{psi_clairvoyance}+@{psi_deflection}]]}}"><span style="font-size: small; padding-left:10px;">WIS</button></span>
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Charisma Saving Throw}} {{roll=[[1d20+@{charisma}+@{psi_domination}+@{psi_deflection}]]}}"><span style="font-size: small; padding-left:10px;">CHA</button></span>            
+            
+            <span class="sheet-blue-color"   style="text-align: left; padding-left: 5px;">RDef <input class="sheet-inputfield sheet-blue-color" title="Ranged Defense Score including armor and shields" type="number" name="attr_ranged_defense" value="10+@{Dexterity}+@{psi_deflection_ranged_defense}" style="text-align: center; width: 3em;" disabled></span>            
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} Mental Defense Saving Throw}} {{roll=[[1d20+@{wisdom}+@{psi_domination}+@{psi_deflection}+@{raw_energy}]]}}"><span style="font-size: small; padding-left: 5px;">Psi Def</button>
+            <button class="sheet-button-roll"  type="roll" value="&{template:default} {{name=@{character_name} rolls Computer Defense}} {{roll=[[1d20+@{cds}+@{psi_deflection}]]}}"><span style="font-size: small; padding-left:5px;">Firewall</button>
+            
+        </div>    
+        <div class="sheet-skills sheet-block">
+            <h3>SKILLS</h3>            
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Acrobatics}-1]]}}"> Acrobatics</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Athletics}-1]]}}"> Athletics</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Awareness}-1]]}}"> Awareness</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Barter}-1]]}}"> Barter</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Charm}-1]]}}"> Charm</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Diplomacy}-1]]}}"> Diplomacy</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Focus}-1]]}}"> Focus</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{forgery}-1]]}}"> Forgery</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Gather-Info}-1]]}}"> Gather Info</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Insight}-1]]}}"> Insight</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Intimidate}-1]]}}"> Intimidate</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Investigate}-1]]}}"> Investigate</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Mechanic}-1]]}}"> Mechanic</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Medic}-1]]}}"> Medic</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Pilot}-1]]}}"> Pilot</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Stealth}-1]]}}"> Stealth</button>
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{Survival}-1]]}}"> Survival</button>            
+            <button class="sheet-button-roll" style="width: 6em;" type="roll" style="width: 6em;" value="&{template:default} {{name=Melee}} {{roll=[[1d20+@{trick}-1]]}}"> Trick</button>
+        </div>                
+        <div class="sheet-combat sheet-block" style="text-align: center;">
+            <h3>COMBAT</h3>
+            <span class="sheet-blue-color" style="font-size:small; padding-top: 7px;">Bonus Actions   </span>
+            <input class="sheet-inputfield sheet-blue-color" type="number" style="text-align:center; width: 4em;" name="attr_actions" value="floor((@{dexterity}+@{intelligence})/8)+1" disabled>
+            <span class="sheet-blue-color" style="font-size:small; padding-top: 7px;">Movement   </span>
+            <input class="sheet-inputfield sheet-blue-color" type="number" style="text-align:center; width: 4em;" name="attr_actions" value="floor(3+@{dexterity}+@{movement_bonus_misc})" disabled>
+            <button class="sheet-button-roll h3" style="width: 6em;" type="roll" name="roll_initiative" style="width:4em;" value="&{template:default} {{name=Initiative}} {{Roll=[[1d20+@{Dexterity}+@{init_bonus_misc}+floor(@{psi_deflection}/2)+floor(@{psi_clairvoyance}/4) &{tracker}]]}}"><span style="font-size: small;"> Initiative</button>                        
+            <span disabled></span>            
+
+<!-- START COMBAT STYLE ATTACK -->
+            <button class="sheet-button-roll sheet-blue-color" type="roll" style="width: 6em;" name="roll_combat_style_1_name_roll" value="&{template:default} {{name= @{character_name} }} {{style=@{combat_style_1_name}}} {{Roll=[[1d20+@{Dexterity}+@{combat_style_1_hit_bonus}-1]]}} {{Damage=[[(@{combat_style_1_damage_dice}+@{combat_style_1_damage_bonus})*(@{combat_style_1_damage_multiplier})]]}} {{Multiplier=x[[@{combat_style_1_damage_multiplier}]] (Already calculated in the damage)}} {{P Plus=P+[[@{combat_style_1_p_plus}]] }} "> <span style="font-size: x-small;"> Combat Attack </button>            <!-- Combat Style Attack Roll + Damage -->
+<!-- END COMBAT STYLE ATTACK -->            
+
+<!-- START COMBAT STYLE DEFEND -->            
+            <button class="sheet-button-roll" type="roll" style="width: 6em;" name="roll_melee_defense" value="&{template:default} {{name=@{combat_style_name_1}}} {{Roll=[[1d20+@{Dexterity}+@{combat_style_1_def_bonus}+@{psi_deflection_melee_defense}+@{armor_def_bonus}+@{shields_def_bonus}+@{misc_def_bonus}]]}}"><span style="font-size: x-small;">Combat Defend</button>            <!-- Combat Style Attack Roll + Damage -->
+<!-- END COMBAT STYLE DEFEND -->                      
+
+            <button class="sheet-button-roll" type="roll" style="width: 6em;" name="roll_melee_defense" value="&{template:default} {{name=Melee Defense}} {{Roll=[[1d20+@{Dexterity} &{tracker}]]}}"><span style="font-size: small;" value="@{attr_ranged_roll}">Ranged 1</span></button>           
+            <button class="sheet-button-roll" type="roll" style="width: 6em;" name="roll_melee_defense" value="&{template:default} {{name=Melee Defense}} {{Roll=[[1d20+@{Dexterity}+@{deflection}+@{melee_defense} &{tracker}]]}}"><span style="font-size: small;" value="@{attr_ranged_roll_2}">Ranged 2</button>           
+            <span class="sheet-blue-color" style="font-size:small; padding-top: 7px;">Misc Roll</span>
+            <button class="sheet-button-roll" type="roll" style="width: 6em;" name="roll_melee_defense" value="&{template:default} {{name=Melee Defense}} {{Roll=[[1d20+@{Dexterity}+@{deflection}+@{melee_defense} &{tracker}]]}}"><span style="font-size: small;" value="@{attr_ranged_roll_2}">Ranged 2</button>           
+            
+                
+        </div>
+    </div>
+</div>
+
+<div class="sheet-equipped">
+    <h3>Equipped Weapons and Armor Stats</h3>
+    <span class="sheet-blue-color">Equipped Armor and Weapons</span> 
+</div>
+
+<div class="sheet-editskill">
+    <h3>Combat Styles First</h3>
+    <div class="sheet-edit-skills-grid-section">
+        <div class="sheet-block sheet-blue-color sheet-edit-combat-style flex" style="align-items: center">
+            <h3>Melee Combat Style</h3>                    
+                <h4 class="sheet-center">Style Name</h4>
+                <h4 class="sheet-center">Attribute</h4>     
+                <h4 class="sheet-center">Points</h4>           
+                <h4 class="sheet-center">Damage</h4>
+                <h4 class="sheet-center">Dmg +</h4>
+                <h4 class="sheet-center">Multiplier</h4>
+                <h4 class="sheet-center">P+ </h4>
+                <h4 class="sheet-center">Hit Bonus</h4>
+                <h4 class="sheet-center">Def Bonus</h4>            
+
+                <input class="sheet-inputfield sheet-red-color" type="text" name="attr_combat_style_1_name">
+                    <select class="sheet-inputfield sheet-blue-color" type="text" style="width: auto; margin-top:8px" name="attr_combat_style_1_attribute">
+                        <option value="0" disabled hidden selected></option>
+                        <option value="@{strength}" style="color:white;background:#000000;">Strength</option>
+                        <option value="@{dexterity}" style="color:white;background:#000000;">Dexterity</option>
+                        <option value="@{constitution}" style="color:white;background:#000000;">Constitution</option>
+                        <option value="@{intelligence}" style="color:white;background:#000000;">Intelligence</option>
+                        <option value="@{wisdom}" style="color:white;background:#000000;">Wisdom</option>
+                        <option value="@{charisma}" style="color:white;background:#000000;">Charisma</option>
+                    </select>
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 72px;" name="attr_combat_style_1_points" value="0">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="text" style="width: 52px;" name="attr_combat_style_1_damage_dice">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_damage_bonus" value="floor(@{combat_style_1_points}/@{combat_style_1_damage_bonus_cost}) + @{combat_style_1_attribute}" disabled>
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_damage_multiplier" value="floor(@{combat_style_1_points}/@{combat_style_1_damage_multiplier_cost})+1" disabled>
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_p_plus" value="floor(@{combat_style_1_points}/@{combat_style_1_p_plus_cost})+1" disabled>  
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 75px;" name="attr_combat_style_1_hit_bonus" value="floor(@{combat_style_1_points}/@{combat_style_1_hit_bonus_cost})" disabled>
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 75px;" name="attr_combat_style_1_def_bonus" value="floor(@{combat_style_1_points}/@{combat_style_1_def_bonus_cost})" disabled>
+                    <h4 title="This is how many levels it requires to increase this one property of the Combat Style" style="text-align:center; font-size: small;" disabled">Cost per Bonus</h4>
+                    <label disabled></label>
+                    <select class="sheet-skill-progression sheet-dropdown sheet-blue-color  sheet-inputfield" type="text" name="attr_combat_style_1_progression" style="width: 5.5em;">
+                        <option style="color:#278bce;background:#000000;" selected>1,2,3...</option>
+                        <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                        <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                        <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                        <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                        <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                        <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                        
+                    </select>  
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_damage_cost">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_damage_bonus_cost">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_damage_multiplier_cost">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 52px;" name="attr_combat_style_1_p_plus_cost">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 75px;" name="attr_combat_style_1_hit_bonus_cost">
+                    <input class="sheet-inputfield-combat-style sheet-blue-color" type="number" style="width: 75px;" name="attr_combat_style_1_def_bonus_cost">
+        </div>
+    </div>
+</div>
+
+        <!-- <h3>Skills</h3>
+        <div class="sheet-block sheet-blue-color sheet-edit-skills" style="align-items: center">
+        <span disabled></span>
+        <span disabled></span>
+        <span disabled></span>
+        <span disabled></span>
+        <h3>General Skills</h3>                    
+        <!-- HEADERS of Skills -->              
+            <!-- <span class="sheet-center" style="grid-column:1;">Skill Name</span>
+            <span class="sheet-center" style="grid-column:2;">Attribute</span>
+            <span class="sheet-center" style="grid-column:3;">V.I.</span>
+            <span class="sheet-center" style="grid-column:4;">Gen</span>                    
+            <span class="sheet-center" style="grid-column:5;">Psi</span>
+            <span class="sheet-center" style="grid-column:6;">Misc</span>
+            <span class="sheet-center" style="grid-column:7;">Artifact</span>
+            <span class="sheet-center" style="grid-column:8;">Points</span>
+            <span class="sheet-center" style="grid-column:9;">Progr.</span>     
+            <span> BUTTON </span> -->
+        
+        <!-- INPUTFIELDS for Skills -->
+       <!--<button class="sheet-button-roll" type="roll" style="font-size:x-small; text-align:center;" value="&{template:default} {{name=Appraise}} {{roll=
+        [[1d20+@{skill_appraise_attribute}
+        +@{skill_appraise_vi_bonus}
+        +@{skill_appraise_genetics_bonus}
+        +@{skill_appraise_psi_bonus}
+        +@{skill_appraise_misc_bonus}
+        +{skill_appraise_artifact_bonus}
+        +@{skill_appraise_points}
+        ]]}}"><span  name="attr_skill_appraise" value="attr_skill_appraise"></span></button>    
+        <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_appraise" value="Appraise" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_appraise_attribute" style="width:60px;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="@{strength}">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="@{dexterity}" selected>DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="@{constitution}">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="@{intelligence}">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="@{wisdom}">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="@{charisma}">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_appraise_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_appraise_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_appraise_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_appraise_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_appraise_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_appraise_points" value="0" style="width:52px;">                
+                <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_appraise_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_acrobatics" value="attr_skill_acrobatics"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_acrobatics" value="Acrobatics" disabled />
+                <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_acrobatics_attribute" style="width:60px; grid-column: 2;"> 
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+                </select>
+                <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_acrobatics_vi_bonus" value="0" style="width:52px;">
+                <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_acrobatics_genetics_bonus" value="0" style="width:52px;" >
+                <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_acrobatics_psi_bonus" > 
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                    <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+                </select>
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_acrobatics_misc_bonus" value="0" style="width:52px;">                
+                    <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_acrobatics_artifact_bonus" value="0" style="width:52px;">                
+                    <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_acrobatics_points" value="0" style="width:52px;">                
+                    <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_acrobatics_progression" style="width: 75px;">
+                        <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                        <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                        <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                        <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                        <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                        <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                        <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                    </select>
+                    <span disabled></span>
+                                    
+                    <span class="sheet-center sheet-blue-color" name="attr_skill_athletics" value="attr_skill_athletics"></span>    
+                    <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_athletics" value="Athletics" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_athletics_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_athletics_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_athletics_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_athletics_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_athletics_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_athletics_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_athletics_points" value="0" style="width:52px;">                
+                <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_athletics_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_awareness" value="attr_skill_awareness"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_awareness" value="Awareness" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_awareness_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_awareness_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_awareness_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_awareness_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_awareness_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_awareness_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_awareness_points" value="0" style="width:52px;">                
+                <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_awareness_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_barter" value="attr_skill_barter"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_barter" value="Barter" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_barter_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_barter_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_barter_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_barter_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_barter_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_barter_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_barter_points" value="0" style="width:52px;">                
+                <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_barter_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>                
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_charm" value="attr_skill_charm"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_charm" value="Charm" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_charm_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_charm_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_charm_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_charm_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_charm_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_charm_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_charm_points" value="0" style="width:52px;">                
+                <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_charm_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_diplomacy" value="attr_skill_diplomacy"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_diplomacy" value="Diplomacy" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_diplomacy_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_diplomacy_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_diplomacy_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_diplomacy_psibonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_diplomacy_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_diplomacy_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_diplomacy_points" value="0" style="width:52px;">                
+                <select class="skill-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_diplomacy_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_focus" value="attr_skill_focus"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_focus" value="Focus" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_focus_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_focus_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_focus_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_focus_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_focus_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_focus_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_focus_points" value="0" style="width:52px;">                
+                <select class="skill_focus_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_focus_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_forgery" value="attr_skill_forgery"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_forgery" value="Forgery" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_forgery_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_forgery_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_forgery_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_forgery_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_forgery_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_forgery_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_forgery_points" value="0" style="width:52px;">                
+                <select class="skill_forgery_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_forgery_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_gather_info" value="attr_skill_gather_info"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_gather_info" value="Gather Info" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_gather_info_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_gather_info_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_gather_info_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_gather_info_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_gather_info_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_gather_info_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_gather_info_points" value="0" style="width:52px;">                
+                <select class="skill_gather_info_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_gather_info_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_insight" value="attr_skill_insight"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_insight" value="Insight" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_insight_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_insight_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_insight_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_insight_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_insight_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_insight_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_insight_points" value="0" style="width:52px;">                
+                <select class="skill_insight_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_insight_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_intimidate" value="attr_skill_intimidate"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_intimidate" value="Intimidate" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_intimidate_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_intimidate_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_intimidate_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_intimidate_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_intimidate_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_intimidate_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_intimidate_points" value="0" style="width:52px;">                
+                <select class="skill_intimidate_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_intimidate_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_investigation" value="attr_skill_investigation"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_investigation" value="Investigation" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_investigation_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_investigation_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_investigation_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_investigation_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_investigation_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_investigation_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_investigation_points" value="0" style="width:52px;">                
+                <select class="skill_investigation_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_investigation_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_medic" value="attr_skill_medic"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_medic" value="Medic" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_medic_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_medic_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_medic_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_medic_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_medic_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_medic_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_medic_points" value="0" style="width:52px;">                
+                <select class="skill_medic_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_medic_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_perform" value="attr_skill_perform"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_perform" value="Perform" />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_perform_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_perform_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_perform_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_perform_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_perform_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_perform_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_perform_points" value="0" style="width:52px;">                
+                <select class="skill_perform_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_perform_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_pilot" value="attr_skill_pilot"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_pilot" value="Pilot" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_pilot_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_pilot_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_pilot_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_pilot_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_pilot_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_pilot_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_pilot_points" value="0" style="width:52px;">                
+                <select class="skill_pilot_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_pilot_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_trickery" value="attr_skill_trickery"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_trickery" value="Trickery" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_trickery_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_trickery_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_trickery_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_trickery_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_trickery_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_trickery_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_trickery_points" value="0" style="width:52px;">                
+                <select class="skill_trickery_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_trickery_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_stealth" value="attr_skill_stealth"></span>    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_stealth" value="Stealth" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_stealth_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_stealth_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_stealth_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_stealth_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_stealth_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_stealth_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_stealth_points" value="0" style="width:52px;">                
+                <select class="skill_stealth_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_stealth_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <span class="sheet-center sheet-blue-color" name="attr_skill_survival" value="attr_skill_survival"></span>                    
+                <input class="sheet-inputfield sheet-center sheet-blue-color" type="hidden" name="attr_skill_survival" value="Survival" disabled />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color"  name="attr_skill_survival_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_survival_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_survival_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_survival_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_survival_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_survival_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_survival_points" value="0" style="width:52px;">                
+                <select class="skill_survival_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_survival_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                
+                <input class="sheet-inputfield sheet-center sheet-blue-color" name="attr_skill_custom_1" value="" />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_custom_1_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_1_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_1_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_custom_1_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_1_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_1_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_1_points" value="0" style="width:52px;">                
+                <select class="skill_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_custom_1_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <input class="sheet-inputfield sheet-center sheet-blue-color" name="attr_skill_custom_2" value="" />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_custom_2_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_2_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_2_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_custom_2_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_2_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_2_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_2_points" value="0" style="width:52px;">                
+                <select class="skill_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_custom_2_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+
+                <input class="sheet-inputfield sheet-center sheet-blue-color" name="attr_skill_custom_3" value="" />
+            <select class="sheet-inputfield sheet-dropdown sheet-center sheet-blue-color" name="attr_skill_custom_3_attribute" style="width:60px; grid-column: 2;"> 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+            </select>
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_3_vi_bonus" value="0" style="width:52px;">
+            <input class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_3_genetics_bonus" value="0" style="width:52px;" >
+            <select class="sheet-inputfield sheet-center sheet-dropdown sheet-blue-color" name="attr_skill_custom_3_psi_bonus" > 
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+            </select>
+            <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_3_misc_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_3_artifact_bonus" value="0" style="width:52px;">                
+                <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skill_custom_3_points" value="0" style="width:52px;">                
+                <select class="skill_-progression sheet-center sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skill_custom_3_progression" style="width: 75px;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>
+                <span disabled></span>
+    </div> -->
+
+    <!-- <div style="align-items:center; padding-top:25px;">   -->
+<div class="sheet-editskills">
+    
+        <div class="sheet-block sheet-edit-skills-grid-section">
+            <h3 class="sheet-center">Hero Skills</h3>
+            
+                <div class="sheet-edit-repeating-skills" style="padding-top:5px;">
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabel" value="Skill Name" disabled/>
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelattribute" value="Attribute" style="width: 60px;" disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelVI" value="V.I." style="width: 52px;" disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelGen" value="Gen." style="width: 52px;" disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelpsi" value="Psionic"  disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelmisc" value="Misc" style="width:52px;" disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelartifact" value="Artifact" style="width:52px;" disabled />                        
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelprog" value="Progression" style="width:80px;" disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabelpoints" value="Points" style="width:52px;" disabled />
+                        <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_skillnamelabellevel" value="Level" disabled />     
+
+                    <fieldset class="repeating_skills">                
+                        <input class="sheet-inputfield sheet-blue-color" type="text" name="attr_skillname" value="" />
+
+                        <select class="sheet-inputfield sheet-dropdown sheet-blue-color" name="attr_skillattribute" style="width:60px;"> 
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_attribute_dropdown_none">none</option>
+                        </select>
+                        
+                        <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skillvibonus" value="0" style="width:52px;">                        
+                        <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skillgeneticbonus" value="0" style="width:52px;">
+                        
+                        <select class="sheet-inputfield sheet-dropdown sheet-blue-color" name="attr_skillpsibonus" > 
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+                            <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_none">None</option>
+                        </select>
+                        
+                        <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skillmiscbonus" value="0" style="width:52px;">                        
+                        <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skillartifactbonus" value="0" style="width:52px;">                                                
+                        
+                        <select class="skill-progression sheet-dorpdown sheet-blue-color sheet-inputfield" type="text" name="attr_skillprogression" style="width: 80px;">
+                            <option style="color:#278bce;background:#000000;" selected>1,2,3...</option>
+                            <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                            <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                            <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                            <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                            <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                            <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                        </select>
+                        <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_skillpoints" value="0" style="width:52px;">
+                        <input class="sheet-center sheet-inputfield sheet-blue-color" name="repeating_skillnamelevel" value="Level" />                        
+                        
+                    </fieldset>
+                </div>        
+
+            </div>       
+        </div>
+</div>
+
+
+
+<div class="sheet-inventory">
+    <h3>Inventory Items Go Here</h3>
+    <div class="sheet-block edit-inventory-grid-section">        
+        
+            <div class="edit-money sheet-block" style="padding-top:5px;">                
+                <input class="sheet-inputfield" style="width:10em;" type="number" title="Galactic Credits, Honored by APS and Civilized Sector Banks" name="attr_galactic_credits value="" >
+                <span class="sheet-blue-color sheet-center-2" value="">GC's</span>
+                <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabel" value="item_ Name" disabled/>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelattribute" value="Attribute" style="width: 60px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelVI" value="V.I." style="width: 52px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelGen" value="Gen." style="width: 52px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelpsi" value="Psionic"  disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelmisc" value="Misc" style="width:52px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelartifact" value="Artifact" style="width:52px;" disabled />                        
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelprog" value="Progression" style="width:80px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelpoints" value="Points" style="width:52px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabellevel" value="Level" disabled />     
+
+                <fieldset class="repeating_items">                
+                    <input class="sheet-inputfield sheet-blue-color" type="text" name="attr_item_name" value="" />
+
+                    <select class="sheet-inputfield sheet-dropdown sheet-blue-color" name="attr_item_attribute" style="width:60px;"> 
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_strength">STR</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_dexterity">DEX</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_constitution">CON</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_intelligence">INT</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_wisdom">WIS</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_charisma">CHA</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_attribute_dropdown_none">none</option>
+                    </select>
+                    
+                    <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_item_vibonus" value="0" style="width:52px;">                        
+                    <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_item_geneticbonus" value="0" style="width:52px;">
+                    
+                    <select class="sheet-inputfield sheet-dropdown sheet-blue-color" name="attr_item_psibonus" > 
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_body_discipline">Body Disc</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_causation">Causation</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_clairvoyance">Clairvoyance</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_deflection">Deflection</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_domination">Domination</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_energy_communion">Energy</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_molecular_alteration">Molecular</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_pyrokinesis">Pyro</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_subatomic_alteration">Subatomic</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_telekinesis">Telekinesis</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_anti_psionics">Anti Psi</option>
+                        <option class="sheet-dropdown sheet-blue-color" style="background-color:#000005;" value="attr_psi_none">None</option>
+                    </select>
+                    
+                    <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_item_miscbonus" value="0" style="width:52px;">                        
+                    <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_item_artifactbonus" value="0" style="width:52px;">                                                
+                    
+                    
+                </fieldset>
+            </div>        
+
+        </div>       
+    </div>
+</div>
+
+
+<div class="sheet-editcharacter">
+    <h3>EDIT SHEET</h3>    
+    <span class="sheet-subheading sheet-blue-color">edit the core of your character here</span>
+    <!-- START OF EDIT SHEET -->
+    <div class="sheet-edit-character-grid-section">
+
+            <div class="sheet-edit-core-stats sheet-block" style="text-align: center;">                
+                <span class="sheet-blue-color" style="text-align:center; padding:5px;">Race</span>
+                <select type="text" class="sheet-inputfield sheet-blue-color" name="attr_race" style="width: 6em; align-items: left;">
+                    <option disabled hidden selected></option>
+                    <option style="color:white;background:#000000;">Talaxian</option>
+                    <option style="color:white;background:#000000;">Human</option>
+                    <option style="color:white;background:#000000;">Sollox</option>
+                    <option style="color:white;background:#000000;">Thorn</option>
+                    <option style="color:white;background:#000000;">Custom</option>
+                </select>   
+                <span class="sheet-blue-color" style="text-align:right; padding:5px;">Init +</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_init_bonus_misc" value="0">
+                <span disabled></span>
+                <span disabled></span>
+                <span disabled></span>
+                <span disabled></span>
+                <span disabled></span>            
+
+                <span class="sheet-blue-color">Attribute</span>
+                <span class="sheet-blue-color">Score</span>
+                <span class="sheet-blue-color">Race</span>
+                <span class="sheet-blue-color">Gen</span>
+                <span class="sheet-blue-color">Cyb</span>
+                <span class="sheet-blue-color">Psi</span>
+                <span class="sheet-blue-color">Misc</span>
+                <span class="sheet-blue-color">Points</span>     
+                <span class="sheet-blue-color">Progression</span>      
+                
+                <span class="sheet-blue-color sheet-center">STR</span>
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_strength" value="attr_strength" ></span>
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_racial_str" value="attr_racial_str" ></span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_genetic_engineering_str" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_cybernetics_str" value="0">
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_psi_body_discipline_strength" value="attr_psi_body_discipline_strength" ></span>                
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_misc_str" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_strength_points" value="">           
+                <select class="skill-progression sheet-dorpdown sheet-blue-color  sheet-inputfield" type="text" name="attr_strength_progression" style="width: 7em;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                                 
+                </select>                
+
+                <span class="sheet-blue-color sheet-center">DEX</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_dexterity" value="floor(@{racial_dex}+@{genetic_engineering_dex}+@{cybernetics_dex}+@{psi_body_dexterity}+@{misc_dex})" disabled>                
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_racial_dex" value="attr_racial_dex" disabled></span>                
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_genetic_engineering_dex" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_cybernetics_dex" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_psi_body_dexterity" value="(@{psi_body_discipline_dexterity}+@{psi_telekinesis_augment})" disabled>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_misc_dex" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_dexterity_points" value="">    
+                <select class="skill-progression sheet-dropdown sheet-blue-color   sheet-inputfield" type="text" name="attr_dexterity_progression" style="width: 7em;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                        
+                </select>                        
+
+                <span class="sheet-blue-color sheet-center">CON</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_constitution" value="floor(@{racial_con}+@{genetic_engineering_con}+@{cybernetics_con}+@{psi_body_constitution}+@{misc_con})" disabled>
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_racial_con" value="attr_racial_con" disabled></span>                
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_genetic_engineering_con" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_cybernetics_con" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_psi_body_constitution" value="(@{psi_body_discipline_constitution}+@{psi_telekinesis_augment})" disabled>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_misc_con" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_constitution_points" value="">      
+                <select class="skill-progression sheet-dropdown sheet-blue-color   sheet-inputfield" type="text" name="attr_constitution_progression" style="width: 7em;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                        
+                </select>                        
+
+                <span class="sheet-blue-color sheet-center">INT</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_intelligence" value="floor(@{racial_int}+@{genetic_engineering_int}+@{cybernetics_int}+@{misc_int})" disabled>
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_racial_int" value="attr_racial_int" disabled></span>                
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_genetic_engineering_int" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_cybernetics_int" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_psi_clairvoyance_int" value="0" disabled>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_misc_int" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_intelligence_points" value=""> 
+                <select class="skill-progression sheet-dropdown sheet-blue-color   sheet-inputfield" type="text" name="attr_intelligence_progression" style="width: 7em;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                        
+                </select>                        
+
+                <span class="sheet-blue-color sheet-center">WIS</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_wisdom" value="floor(@{racial_wis}+@{genetic_engineering_wis}+@{cybernetics_wis}+@{psi_clairvoyance_wis}+@{misc_wis})" disabled>
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_racial_wis" value="attr_racial_wis" disabled></span>                
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_genetic_engineering_wis" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_cybernetics_wis" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_psi_clairvoyance_wis" value="0" disabled>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_misc_wis" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_wisdom_points" value=""> 
+                <select class="skill-progression sheet-dropdown sheet-blue-color   sheet-inputfield" type="text" name="attr_wisdom_progression" style="width: 7em;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                        
+                </select>                        
+            
+                <span class="sheet-blue-color sheet-center">CHA</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_wisdom" value="floor(@{racial_cha}+@{genetic_engineering_cha}+@{cybernetics_cha}+@{psi_domination_charisma}+@{misc_wis})" disabled>
+                <span class="sheet-blue-color" style="text-align: center;" name="attr_racial_cha" value="attr_racial_cha" disabled></span>                
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_genetic_engineering_cha" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_cybernetics_cha" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_psi_clairvoyance_cha" value="0" disabled>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_misc_cha" value="0">
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_charisma_points" value=""> 
+                <select class="skill-progression sheet-dropdown sheet-blue-color  sheet-inputfield" type="text" name="attr_charisma_progression" style="width: 7em;">
+                    <option style="color:#278bce;background:#000000;">1,2,3...</option>
+                    <option style="color:#278bce;background:#000000;">4,5,6,7</option>
+                    <option style="color:#278bce;background:#000000;">3,4,5,6</option>   
+                    <option style="color:#278bce;background:#000000;">2,3,4,5</option>
+                    <option style="color:#278bce;background:#000000;">1,2,3,4</option>                                                                        
+                    <option style="color:#278bce;background:#000000;">3,3,3,3</option>                
+                    <option style="color:#278bce;background:#000000;">5,5,5,5</option>                                        
+                </select>  
+                
+            </div>
+
+            <div class="sheet-edit-health-misc sheet-block">        
+                <h3>Hero Misc</h3>
+                <span class="sheet-blue-color sheet-center">HP Bonus</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_hp_bonus_misc" value="0" style="width: 3.5em; text-align: center">
+                <span class="sheet-blue-color sheet-center">Misc Def</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_def_bonus_misc" value="0" style="width: 3.5em; text-align: center">                        
+                <span class="sheet-blue-color sheet-center">P+ Bonus</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_p_plus_bonus_misc" value="0" style="width: 3.5em; text-align: center">
+                <span class="sheet-blue-color sheet-center">Reg. Bonus</span>        
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_regen_bonus_misc" value="0" style="width: 3.5em; text-align: center">
+                <span class="sheet-blue-color sheet-center">Dmg. Red.</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_damage_reduction_bonus_misc" value="0" style="width: 3.5em; text-align: center">
+                <span class="sheet-blue-color sheet-center">Movement</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_movement_bonus_misc" value="0" style="width: 3.5em; text-align: center">                
+                <span class="sheet-blue-color sheet-center">Init Bonus</span>
+                <input class="sheet-inputfield sheet-blue-color"  type="number" name="attr_init_bonus_misc" value="0" style="width: 3.5em; text-align: center">                        
+            </div>  
+
+            
+
+    </div>
+</div>
+        
+<!-- Start of Psionics Edit Sheet -->
+
+<!-- <div class="sheet-editpsionics">
+    <h3 style="grid-column: 1 / -1; text-align:center; padding-top: 10px;">PSIONICS EDIT PAGE</h3>     <!-- PAGE HEADER BELOW BUTTONS -->           
+    <!-- Add your HTML HERE -->    
+    <!-- <div class="sheet-edit-psionics-grid-section">                      
+            <div class="sheet-life-energy sheet-block" style="text-align: center;">                
+                <h3 style="grid-column: 1 / -1; padding-top: 5px;">Life Cord</h3>
+                <span class="sheet-blue-color" style="text-align: right; padding-top: 5px;">L.E.</span class="sheet-blue-color" />
+                <input class="sheet-inputfieldlc sheet-blue-color" title="Your Current Life Energy" type="number" name="attr_life_energy" value="attr_life_energy"  />
+                                
+                <input class="sheet-inputfieldlc sheet-blue-color" title="Your Maximum Life Energy" type="number" name="attr_life_energy_full" value="" />
+                <span class="sheet-blue-color" style="text-align: left; padding-top: 5px;">Max</span class="sheet-blue-color" />
+                
+                <span class="sheet-blue-color" style="text-align: right; padding-top: 5px;">RE</span>
+                <input class="sheet-inputfieldlc sheet-blue-color" title="Your Current Raw Energy Output" type="number" name="attr_raw_energy" value="floor(@{life_energy} / 100)" disabled />                                
+
+                <input class="sheet-inputfieldlc sheet-blue-color" title="Your Current Raw Energy Output" type="number" name="attr_sphere_of_influence" value="floor(@{life_energy} / 100)" disabled />
+                <span class="sheet-blue-color" style="text-align: left; padding-top: 5px;">SoI</span>
+                                
+                <span class="sheet-blue-color" style="font-size:x-small; text-align: right; padding-top: 5px;">Regen %</span class="sheet-blue-color" />
+                <input class="sheet-inputfieldlc sheet-blue-color" title="This the percentage of your potential maximum that you regenerate per day" type="number" name="attr_life_energy_regen_percent"  value="10" min="-100" max="100" />                
+                                                
+                <input class="sheet-inputfieldlc sheet-blue-color" title="Actual Life Energy per day" type="number" name="attr_life_energy_regenerated" value="(@{life_energy_full}/100)*(@{life_energy_regen_percent})" disabled /> 
+                <span class="sheet-blue-color" style="text-align: left; padding-top: 5px;">LE:Day</span class="sheet-blue-color" />
+            </div>                    
+            <div class="edit-psionics-buttons">          
+                <input type="hidden" class="sheet-tabstoggle1" name="attr_sheetTab2"  value="body-discipline" />                                  
+                    <button class="sheet-button-roll2" type="action" name="act_body-discipline" >Body Disc</button>           
+                    <button class="sheet-button-roll2" type="action" name="act_causation" >Causation</button>
+                    <button class="sheet-button-roll2" type="action" name="act_clairvoyance" >Clairvoyance</button>
+                    <button class="sheet-button-roll2" type="action" name="act_deflection" >Deflection</button>
+                    <button class="sheet-button-roll2" type="action" name="act_domination" >Domination</button>  
+                    <button class="sheet-button-roll2" type="action" name="act_energy-communion" >Energy</button>                           
+                    <button class="sheet-button-roll2" type="action" name="act_molecular-alteration" >Molecular</button>
+                    <button class="sheet-button-roll2" type="action" name="act_pyrokinesis" >Pyrokinesis</button>
+                    <button class="sheet-button-roll2" type="action" name="act_subatomic-alteration" >Subatomic</button>
+                    <button class="sheet-button-roll2" type="action" name="act_telekinesis" >Telekinesis</button>  
+                    <button class="sheet-button-roll2" type="action" name="act_anti-psionics" >Anti Psi</button>  
+            </div>
+                <div class="sheet-body-discipline sheet-block">                    
+                    
+                        <h4 class="sheet-blue-color">Body Discipline Page???</h4>
+                        <h4 class="sheet-blue-color">Body Discipline Page???</h4>
+                    
+                </div>  
+                <div class="sheet-causation sheet-block">                    
+                    <div class="edit-psionics">
+                        <h4 class="sheet-blue-color">Causation Page???</h4>
+                        <h4 class="sheet-blue-color">Causation Page???</h4>                        
+                    </div>
+                </div>  
+                
+            </div>    
+    </div>
+</div>   --> 
+
+    <!-- END OF Psi Edit SHEET -->
+
+</div> <!-- End of 1st Div -->
+
+
+<script type="text/worker">
+
+    /* This controls the button functions to switch tabs */
+    
+    const buttonlist = ["character","equipped","editskills","inventory","editcharacter","editpsionics"];
+    buttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                sheetTab: button
+            });
+        });
+    });
+
+    /*
+    const buttonlist = ["body-discipline","causation","clairvoyance","deflection","domination","energy-communion","molecular-alteration","pyrokinesis","subatomic-alteration","telekinesis","anti-psionics"];
+    buttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                sheetTab2: button
+            });
+        });
+    });
+    */
+    
+
+
+
+/* Racial watcher */
+
+on('change:race', function(eventInfo) {
+    /*
+        This watcher looks for changes in race, and set the primaryRacial 
+        attributes as appropriate. Again, this code could be made more compact, 
+        but I prefer readability over fewer lines of code. 
+    */
+    getAttrs(['race'], function(values) {
+        if (values.race == "Human") {
+            setAttrs({ racial_str :               1 });
+            setAttrs({ racial_dex :               1 });
+            setAttrs({ racial_con :               1 });
+            setAttrs({ iracial_int :              1 });
+            setAttrs({ racial_wis :               1 });
+            setAttrs({ racial_cha :               1 });
+            setAttrs({ racial_str_max :          10 });
+            setAttrs({ racial_dex_max :          10 });
+            setAttrs({ racial_con_max :          10 });
+            setAttrs({ racial_hp_base :          10 });
+            setAttrs({ racial_le_base :          50 });
+        }    
+        else if (values.race == "Sollox") {
+            setAttrs({ racial_str :               0 });
+            setAttrs({ racial_dex :               2 });
+            setAttrs({ racial_con :               0 });
+            setAttrs({ iracial_int :              2 });
+            setAttrs({ racial_wis :               1 });
+            setAttrs({ racial_cha :               1 });
+            setAttrs({ racial_str_max :          15 });
+            setAttrs({ racial_dex_max :          10 });
+            setAttrs({ racial_con_max :          15 });
+            setAttrs({ racial_hp_base :           5 });
+            setAttrs({ racial_le_base :          25 });
+        }
+        else if (values.race == "Talaxian") {
+            setAttrs({ racial_str :               3 });
+            setAttrs({ racial_dex :               0 });
+            setAttrs({ racial_con :               3 });
+            setAttrs({ iracial_int :              0 });
+            setAttrs({ racial_wis :               0 });
+            setAttrs({ racial_cha :               0 });
+            setAttrs({ racial_str_max :          25 });
+            setAttrs({ racial_dex_max :           3 });
+            setAttrs({ racial_con_max :          15 });
+            setAttrs({ racial_hp_base :          30 });
+            setAttrs({ racial_le_base :          50 });
+        }
+        else if (values.race == "Thorn") {
+            setAttrs({ racial_str :              2 });
+            setAttrs({ racial_dex :              1 });
+            setAttrs({ racial_con :              3 });
+            setAttrs({ iracial_int :             0 });
+            setAttrs({ racial_wis :              0 });
+            setAttrs({ racial_cha :              0 });
+            setAttrs({ racial_str_max :         25 });
+            setAttrs({ racial_dex_max :          3 });
+            setAttrs({ racial_con_max :         15 });
+            setAttrs({ racial_hp_base :         30 });
+            setAttrs({ racial_le_base :         30 });
+        }
+        else {
+            setAttrs({ racial_str :              0 });
+            setAttrs({ racial_dex :              0 });
+            setAttrs({ racial_con :              0 });
+            setAttrs({ iracial_int :             0 });
+            setAttrs({ racial_wis :              0 });
+            setAttrs({ racial_cha :              0 });        
+            setAttrs({ racial_hp_base :         10 });
+            setAttrs({ racial_le_base :         25 });
+        }
+    });
+    });    
+    
+// Watching for when sheet is opened and initializing any empty numerical values
+on('sheet:opened', function(values) {
+    /* 
+        The purpose of this watcher is to initialize all the 
+        various important attributes, and thus avoid the complication of trying to 
+        do something with something that is undefined. Other places of the code
+        will try to have safeguards against this, but this is just another layer
+        of protection in case I miss something. 
+    */ 
+    
+    // INITIALIZING NUMERIAL ATTRIBUTES
+    
+    let listOfNumericalAttributes = new Object();
+    
+    // Core attributes
+    listOfNumericalAttributes["strength"] = ["racial_str", "genetic_engineering_str", "cybernetics_str", "psi_body_discipline_strength", "psi_telekinesis_augment", "misc_str"];    
+    listOfNumericalAttributes["dexterity"] = ["racial_dex", "genetic_engineering_dex", "cybernetics_dex", "psi_body_discipline_dexterity", "psi_telekinesis_augment", "misc_dex"];
+    listOfNumericalAttributes["constitution"] = ["racial_con", "genetic_engineering_con", "cybernetics_con", "psi_body_discipline_constitution", "psi_telekinesis_augment", "misc_con"];
+    listOfNumericalAttributes["intelligence"] = ["racial_int", "genetic_engineering_int", "cybernetics_int", "misc_int"];
+    listOfNumericalAttributes["wisdom"] = ["racial_wis", "genetic_engineering_wis", "cybernetics_wis", "misc_wis"];
+    listOfNumericalAttributes["charisma"] = ["racial_cha", "genetic_engineering_cha", "cybernetics_cha", "psi_domination_charisma", "misc_cha"];
+    
+    /*
+    listOfNumericalAttributes["life_energy"] = ["attr_life_energy"];
+    listOfNumericalAttributes["raw_energy"] = ["attr_raw_energy"];
+    
+    
+    //Psionics
+    listOfNumericalAttributes["psi_body_discipline"] = ["psi_body_discipline_artifact" ];
+    listOfNumericalAttributes["psi_causation"] = ["psi_causation_artifact", "psi_causation_quirk_bonus", "psi_causation_points", ];
+    listOfNumericalAttributes["psi_clairvoyance"] = ["psi_clairvoyance_artifact", "psi_clairvoyance_quirk_bonus", "psi_clairvoyance_points", ];
+    listOfNumericalAttributes["psi_deflection"] = ["psi_deflection_artifact", "psi_deflection_quirk_bonus", "psi_deflection_points", ];
+    listOfNumericalAttributes["psi_domination"] = ["psi_domination_artifact", "psi_domination_quirk_bonus", "psi_domination_points", ];
+    listOfNumericalAttributes["psi_energy_communion"] = ["psi_energy_communion_artifact", "psi_energy_communion_quirk_bonus", "psi_energy_communion_points", ];
+    listOfNumericalAttributes["psi_molecular_alteration"] = ["psi_molecular_alteration_artifact", "psi_molecular_alteration_quirk_bonus", "psi_molecular_alteration_points", ];
+    listOfNumericalAttributes["psi_pyrokinesis"] = ["psi_pyrokinesis_artifact", "psi_pyrokinesis_quirk_bonus", "psi_pyrokinesis_points", ];
+    listOfNumericalAttributes["psi_subatomic_alteration"] = ["psi_subatomic_alteration_artifact", "psi_subatomic_alteration_quirk_bonus", "psi_subatomic_alteration_points", ];
+    listOfNumericalAttributes["psi_telekinesis"] = ["psi_telekinesis_artifact", "psi_telekinesis_quirk_bonus", "psi_telekinesis_points", ];
+    listOfNumericalAttributes["psi_anti_psionics"] = ["psi_anti_psionics_artifact", "psi_anti_psionics_quirk_bonus", "psi_anti_psionics_points", ];
+    
+    // Education
+    listOfNumericalAttributes["biology"] = ["biologyVI", "biologyCause", "biologyMisc", "biologyPoints"];
+    listOfNumericalAttributes["business"] = ["businessVI", "businessCause", "businessMisc", "businessPoints"];
+    listOfNumericalAttributes["chemistry"] = ["chemistryVI", "chemistryCause", "chemistryMisc", "chemistryPoints"];
+    listOfNumericalAttributes["engineering"] = ["engineeringVI", "engineeringCause", "engineeringMisc", "engineeringPoints"];
+    listOfNumericalAttributes["tronics"] = ["tronicsVI", "tronicsCause", "tronicsMisc", "tronicsPoints"];
+    listOfNumericalAttributes["law"] = ["lawVI", "lawCause", "lawMisc", "lawPoints"];
+    listOfNumericalAttributes["physics"] = ["physicsVI", "physicsCause", "physicsMisc", "physicsPoints"];
+    listOfNumericalAttributes["programming"] = ["programmingVI", "programmingCause", "programmingMisc", "programmingPoints"];
+    
+    // General skills
+    listOfNumericalAttributes["acrobatics"] = ["acrobaticsVI", "acrobaticsCause", "acrobaticsMisc", "acrobaticsPoints"];
+    listOfNumericalAttributes["athletics"] = ["athleticsVI", "athleticsCause", "athleticsMisc", "athleticsPoints"];
+    listOfNumericalAttributes["awareness"] = ["awarenessVI", "awarenessCause", "awarenessMisc", "awarenessPoints"];
+    listOfNumericalAttributes["barter"] = ["barterVI", "barterCause", "barterMisc", "barterPoints"];
+    listOfNumericalAttributes["charm"] = ["charmVI", "charmCause", "charmMisc", "charmPoints"];
+    listOfNumericalAttributes["diplomacy"] = ["diplomacyVI", "diplomacyCause", "diplomacyMisc", "diplomacyPoints"];
+    listOfNumericalAttributes["fighterPilot"] = ["fighterPilotVI", "fighterPilotCause", "fighterPilotMisc", "fighterPilotPoints"];
+    listOfNumericalAttributes["focus"] = ["focusVI", "focusCause", "focusMisc", "focusPoints"];
+    listOfNumericalAttributes["forgery"] = ["forgeryVI", "forgeryCause", "forgeryMisc", "forgeryPoints"];
+    listOfNumericalAttributes["gatherInfo"] = ["gatherInfoVI", "gatherInfoCause", "gatherInfoMisc", "gatherInfoPoints"];
+    listOfNumericalAttributes["insight"] = ["insightVI", "insightCause", "insightMisc", "insightPoints"];
+    listOfNumericalAttributes["intimidate"] = ["intimidateVI", "intimidateCause", "intimidateMisc", "intimidatePoints"];
+    listOfNumericalAttributes["investigation"] = ["investigationVI", "investigationCause", "investigationMisc", "investigationPoints"];
+    listOfNumericalAttributes["medic"] = ["medicVI", "medicCause", "medicMisc", "medicPoints"];
+    listOfNumericalAttributes["melee"] = ["meleeVI", "meleeCause", "meleeMisc", "meleePoints"];
+    listOfNumericalAttributes["perform"] = ["performVI", "performCause", "performMisc", "performPoints"];
+    listOfNumericalAttributes["pilot"] = ["pilotVI", "pilotCause", "pilotMisc", "pilotPoints"];
+    listOfNumericalAttributes["sleightOfHand"] = ["sleightOfHandVI", "sleightOfHandCause", "sleightOfHandMisc", "sleightOfHandPoints"];
+    listOfNumericalAttributes["stealth"] = ["stealthVI", "stealthCause", "stealthMisc", "stealthPoints"];
+    listOfNumericalAttributes["survival"] = ["survivalVI", "survivalCause", "survivalMisc", "survivalPoints"];
+     */
+    // Create a list of all the variables and populate it with the values above
+    let list = [];
+    
+    for (var key in listOfNumericalAttributes) {
+        // check if the property/key is defined in the object itself, not in parent
+        list.push(key);
+        if (listOfNumericalAttributes.hasOwnProperty(key)) {           
+            list = list.concat(listOfNumericalAttributes[key]);
+        } 
+    }
+    
+    // Initialize all of the undefined values on the character sheet to 0. 
+    getAttrs(list, function(values) {
+        list.forEach(attribute =>{
+            if (!values[attribute]) {
+                setAttrs({ [attribute] : 0 });
+            }
+        });
+    });
+    });
+
+    on('change:racial_str change:cybernetics_strength change:genetic_engineering_str change:psi_body_discipline_strength change:psi_telekinesis_augment change:misc_str change:strength_points', function(eventInfo) {
+        getAttrs(['racial_str', 'cybernetics_strength', 'genetic_engineering_str', 'psi_body_discipline_strength', 'psi_telekinesis_augment', 'strength_points'], function(values) {
+            updatePointsSpent();
+            let r = parseInt(values.racial_str) || 0;
+            let c = parseInt(values.cybernetics_strength) || 0;
+            let g = parseInt(values.genetic_engineering_str) || 0;            
+            let m = parseInt(values.psi_body_discipline_strength) || 0;
+            let psi_s = parseInt(values.psi_telekinesis_augment) || 0;
+            let ms = parseInt(values.misc_str) || 0;
+            let p = parseInt(values.strength_points) || 0;
+            let progressionList = [];
+            for (i = 1; i < 100; i++) {
+                progressionList = progressionList.concat(i);
+            }
+            let skillLevelBought = buySkillLevel(progressionList, p);
+            setAttrs({ strength : r+c+g+ms+m+psi_s });
+        });
+        });
+        
+
+</script>
+
