@@ -1,0 +1,1135 @@
+@import url("https://fonts.googleapis.com/css?family=Orbitron:wght@400;500;600;700;800;900&family=Roboto+Condensed&display=swap");
+
+/* 
+    blue: #278BCE 
+    grey: #7d7d7d
+    yellow: rgba(255, 215, 0, 1);
+    red: #FF2400
+*/
+
+/*----------- LABELS -------------*/
+
+.label {
+}
+
+.sheet-subheading {
+  color: #278bce;
+  font-size: 16px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+}
+
+.sheet-subsubheading {
+  color: #278bce;
+  font-size: 12px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+  width: 200px;
+}
+
+.sheet-goldenHeading {
+  color: #ffd700;
+  font-size: 20px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+}
+
+.sheet-text {
+  color: #505050;
+  font-size: 14px;
+}
+
+.sheet-green-color {
+    color: #2cff01;
+  }
+
+.sheet-yellow-color {
+    color: #fffb00;
+  }
+
+.sheet-red-color {
+  color: #ff2400;
+}
+
+.sheet-blue-color {
+  color: #278bce;
+}
+
+.sheet-grey-color {
+  /*color: #505050;*/
+  color: 278BCE;
+  
+}
+
+.sheet-white-color {
+    /*color: #505050;*/
+    color: #ffffff;
+  }
+
+.sheet-gold-color {
+  color: #ffd700;
+}
+
+label {
+  color: rgba(255, 215, 0, 1);
+  font-size: 21px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+  font-weight: 400;
+}
+
+.sheet-borderedContainer {
+  background: #111111;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: #555555;
+  padding: 5px;
+}
+
+/* --------------- TABLES ------------------ */
+
+.sheet-ability-property {
+  min-width: 100px;
+  overflow: ;
+}
+
+.sheet-ability-property-description {
+  min-width: 350px;
+  overflow: hidden;
+}
+
+.sheet-currency-label {
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.sheet-column-85 {
+  min-width: 85px;
+  overflow: hidden;
+}
+
+.sheet-column-100 {
+  min-width: 100px;
+  overflow: hidden;
+}
+
+.sheet-currency-input {
+  min-width: 52px;
+  overflow: hidden;
+}
+
+.sheet-skill-name {
+  min-width: 77px;
+  overflow: hidden;
+}
+
+.sheet-skill-bonus {
+  width: 77px;
+  overflow: hidden;
+}
+
+.sheet-skill-attribute {
+  width: 100px;
+  overflow: hidden;
+}
+
+.sheet-skill-input {
+  width: 52px;
+  overflow: hidden;
+}
+
+.sheet-skill-progression {
+  width: 80px;
+  overflow: hidden;
+}
+
+.sheet-table-wide {
+  width: 660px;
+  empty-cells: show;
+}
+
+.sheet-weapon-type {
+  width: 100px;
+  overflow: hidden;
+  float: left;
+}
+
+.sheet-weapon-base {
+  width: 50px;
+  overflow: hidden;
+  float: left;
+}
+
+.sheet-weapon-points {
+  width: 50px;
+  overflow: hidden;
+  float: left;
+}
+
+.sheet-weapon-progression {
+  width: 75px;
+  overflow: hidden;
+  float: left;
+}
+
+.sheet-weapon-result {
+  width: 50px;
+  overflow: hidden;
+  float: left;
+}
+
+.sheet-weapon-name {
+  width: 270px;
+  overflow: hidden;
+  float: left;
+}
+
+th {
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+  /* color: #278BCE; */
+  display: table-cell;
+  vertical-align: inherit;
+  text-align: center;
+  min-width: 50px;
+}
+
+td {
+  /* color: #278BCE; */
+  display: table-cell;
+  text-align: center;
+  vertical-align: inherit;
+}
+
+/*----------- INPUT -------------*/
+
+.sheet-onecolumntextarea {
+  transition: all 0.4s ease-in-out;
+  width: 695;
+  height: 575px;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  resize: none;
+}
+.sheet-ability-description {
+  transition: all 0.4s ease-in-out;
+  color: rgba(255, 215, 0, 1);
+  width: 100%;
+  height: 50px;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  resize: none;
+}
+
+.sheet-onecolumntextarea:focus {
+  border-color: #f8f8f2;
+  color: #f8f8f2;
+}
+
+.sheet-onecolumntextarea:hover {
+  width: 100%;
+  border-color: #f8f8f2;
+  color: #f8f8f2;
+}
+
+.sheet-dropdown {
+  transition: all 0.4s ease-in-out;
+  width: 90px;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sheet-dropdown:hover {
+  border-color: #f8f8f2;
+  color: #ffffff;
+}
+
+.sheet-dropdown:focus {
+  border-color: #f8f8f2;
+  color: #ffffff;
+}
+
+.sheet-inputfield {
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+  text-align: center;
+}
+
+.sheet-inputfield:hover {
+    border-color: #f8f8f27e;
+    color: #ffffff;
+  }
+  
+  .sheet-inputfield:focus {
+    border-color: #f8f8f2;
+    color: #ffffff;
+  }
+
+.sheet-inputfield-abilities {
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.452);
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+  text-align: left;
+  colspan: 100;
+  height: 25px;  
+}
+
+.sheet-inputfield-abilities:hover {
+    border-color: #f8f8f27e;
+    color: #ffffff;
+  }
+  
+  .sheet-inputfield-abilities:focus {
+    border-color: #f8f8f2;
+    color: #ffffff;
+  }
+
+
+/*----------- BUTTONS -------------*/
+
+button[type="roll"].sheet-blank-roll-button:before {
+  content: "t ";
+}
+
+button[type="roll"].sheet-blank-roll-button {
+  content: "";
+  text-shadow: none;
+  color: #278bce;
+  font-size: 14px;
+  text-align: left;
+  line-height: 10px;
+  height: 10px;
+  width: auto;
+  min-width: 50px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-blank-roll-button:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-blank-roll-button:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-blank-roll-button {
+  content: "";
+  text-shadow: none;
+  color: #278bce;
+  font-size: 14px;
+  text-align: left;
+  line-height: 10px;
+  height: 10px;
+  width: auto;
+  min-width: 50px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-blank-roll-button:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-blank-roll-button:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+/*----------- STRUCTURES -------------*/
+
+.sheet-hidden {
+  display: none;
+}
+
+.charsheet {
+  background-color: rgba(255, 255, 255, 1);
+  position: relative;
+  top: 39px;
+  /*    left: -140px; */
+  width: 1000px;
+}
+
+.sheet-cellName {
+  width: 150px;
+  text-align: left;
+}
+
+/* ---------------------- */
+
+.sheet-canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #000000;
+  width: 1000px;
+  height: auto;
+  min-height: 700px;
+  padding: 25px;
+}
+
+.sheet-flex {
+  display: flex;
+  justify-content: space-between; /* left */
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: row;
+}
+
+.sheet-grid {
+  display: grid;
+  grid-template-columns: 150px 50px 50px 50px 50px 50px 50px;
+}
+
+.sheet-internal-container {
+  width: 690px;
+  padding: 5px;
+}
+
+/* unknown what this effects yet 4/7/2022 */
+.sheet-notes-internal-container {
+    width: 690px;
+    height: 675px;    
+ }
+
+ /* borderless black */
+.sheet-notes-outer-container {
+   width: 730px;
+   height: 675px;
+   overflow-x: hidden;
+   overflow-y: auto;
+ }
+
+.sheet-outer-container {
+  width: 730px;
+  height: 495px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sheet-attributes-outer-container {
+  width: 730px;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sheet-education-outer-container {
+  width: 730px;
+  height: 230px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sheet-general-skills-outer-container {
+  width: 730px;
+  height: 395px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sheet-combat-outer-container {
+  height: 650px;
+}
+
+.sheet-large {
+  height: 500px;
+}
+
+.sheet-widget {
+  margin: 5px;
+}
+
+.sheet-less-margin {
+  margin: 1px;
+}
+
+/* Minipages: hides the content by default */
+.charsheet div[class^="sheet-section"] {
+  width: 5px;
+  height: 5px;
+
+  transform: scale(0);
+  opacity: 1; /* changed */
+  transition: all 250ms ease-in-out;
+}
+
+/* Minipages: MAIN PAGE */
+.charsheet input.sheet-tab1:checked ~ div.sheet-section-attribute {
+  /* Dimensions of golden-border golden border for Attributes */
+  width: 710px;
+  height: 575px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: EDUCATION PAGE */
+.charsheet input.sheet-tab2:checked ~ div.sheet-section-education {
+  /* Dimensions */
+  width: 700px;
+  height: 235px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: GENERAL SKILLS PAGE */
+.charsheet input.sheet-tab3:checked ~ div.sheet-section-generalskills {
+  /* Dimensions */
+  width: 700px;
+  height: 400px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: shows the content when the appropriate check buttons are checked*/
+.charsheet input.sheet-tab4:checked ~ div.sheet-section-psionics {
+  /* Dimensions */
+  width: 700px;
+  height: 500px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: COMBAT PAGE */
+.charsheet input.sheet-tab5:checked ~ div.sheet-section-combat {
+  /* Dimensions */
+  width: 700px;
+  height: 650px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: shows the content when the appropriate check buttons are checked*/
+.charsheet input.sheet-tab6:checked ~ div.sheet-section-armor {
+  /* Dimensions */
+  width: 700px;
+  height: 290px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: shows the content when the appropriate check buttons are checked*/
+.charsheet input.sheet-tab7:checked ~ div.sheet-section-melee {
+  /* Dimensions */
+  width: 700px;
+  height: 290px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: shows the content when the appropriate check buttons are checked*/
+.charsheet input.sheet-tab8:checked ~ div.sheet-section-ranged {
+  /* Dimensions */
+  width: 700px;
+  height: 290px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: shows the content when the appropriate check buttons are checked*/
+.charsheet input.sheet-tab9:checked ~ div.sheet-section-inventory {
+  /* Dimensions */
+  width: 700px;
+  height: 510px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* Minipages: shows the content when the appropriate check buttons are checked*/
+.charsheet input.sheet-tab10:checked ~ div.sheet-section-notes {
+  /* Golden Box Dimensions */
+  width: 700px;
+  height: 525px;
+
+  /* Position it so it is to the right of the button */
+  margin-top: 0px;
+  margin-left: 0px;
+
+  /* Border */
+  border-style: inset;
+  border-radius: 0px 15px 15px 15px;
+  border-width: 2px;
+  border-color: rgba(255, 215, 0, 1);
+
+  /* Transition effect when you open it */
+  opacity: 1;
+  transform: scale(1) translateX(120px) translateY(-41px);
+}
+
+/* THIS IS THE PART OF THE CODE THAT HIDE AND REVEAL THE ATTRIBUTES SECTIONS */
+div.sheet-section-attributes-revealed {
+  display: inline;
+}
+
+div.sheet-section-attributes-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-attributes-toggle[value="0"]
+  ~ div.sheet-section-attributes-revealed {
+  display: none;
+}
+
+input.sheet-attributes-toggle[value="0"] ~ div.sheet-section-attributes-hidden {
+  display: inline;
+}
+
+/* THIS IS THE PART OF THE CODE THAT HIDE AND REVEAL THE EDUCATION SECTIONS */
+div.sheet-section-education-revealed {
+  display: inline;
+}
+
+div.sheet-section-education-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-education-toggle[value="0"] ~ div.sheet-section-education-revealed {
+  display: none;
+}
+
+input.sheet-education-toggle[value="0"] ~ div.sheet-section-education-hidden {
+  display: inline;
+}
+
+/* THIS IS THE PART OF THE CODE THAT HIDE AND REVEAL THE GENERAL SKILLS SECTIONS */
+div.sheet-section-general-skills-revealed {
+  display: inline;
+}
+
+div.sheet-section-general-skills-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-general-skills-toggle[value="0"]
+  ~ div.sheet-section-general-skills-revealed {
+  display: none;
+}
+
+input.sheet-general-skills-toggle[value="0"]
+  ~ div.sheet-section-general-skills-hidden {
+  display: inline;
+}
+
+/* THIS IS THE PART OF THE CODE THAT HIDE AND REVEAL THE CUSTOM SKILLS SECTIONS */
+
+
+/* General Abilties */
+div.sheet-section-abilities-revealed {
+  display: inline;
+}
+
+div.sheet-section-abilities-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-abilities-toggle[value="0"] ~ div.sheet-section-abilities-revealed {
+  display: none;
+}
+
+input.sheet-abilities-toggle[value="0"] ~ div.sheet-section-abilities-hidden {
+  display: inline;
+}
+############################################
+
+/* BODY DISCIPLINE */
+div.sheet-section-body-discipline-revealed {
+  display: inline;
+}
+
+div.sheet-section-body-discipline-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-body-discipline-toggle[value="0"] ~ div.sheet-section-body-discipline-revealed {
+  display: none;
+}
+
+input.sheet-body-discipline-toggle[value="0"] ~ div.sheet-section-body-discipline-hidden {
+  display: inline;
+}
+
+/* CAUSATION */
+div.sheet-section-causation-revealed {
+  display: inline;
+}
+
+div.sheet-section-causation-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+input.sheet-causation-toggle[value="0"] ~ div.sheet-section-causation-revealed {
+  display: none;
+}
+
+input.sheet-causation-toggle[value="0"] ~ div.sheet-section-causation-hidden {
+  display: inline;
+}
+
+/* CLAIRVOYANCE */
+div.sheet-section-clairvoyance-revealed {
+  display: inline;
+}
+
+div.sheet-section-clairvoyance-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-clairvoyance-toggle[value="0"] ~ div.sheet-section-clairvoyance-revealed {
+  display: none;
+}
+
+input.sheet-clairvoyance-toggle[value="0"] ~ div.sheet-section-clairvoyance-hidden {
+  display: inline;
+}
+
+/* DEFLECTION */
+div.sheet-section-deflection-revealed {
+  display: inline;
+}
+
+div.sheet-section-deflection-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-deflection-toggle[value="0"] ~ div.sheet-section-deflection-revealed {
+  display: none;
+}
+
+input.sheet-deflection-toggle[value="0"] ~ div.sheet-section-deflection-hidden {
+  display: inline;
+}
+
+/* DOMINATION */
+div.sheet-section-domination-revealed {
+  display: inline;
+}
+
+div.sheet-section-domination-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-domination-toggle[value="0"] ~ div.sheet-section-domination-revealed {
+  display: none;
+}
+
+input.sheet-domination-toggle[value="0"] ~ div.sheet-section-domination-hidden {
+  display: inline;
+}
+
+/* AENERGY COMMUNION */
+div.sheet-section-energy-communion-revealed {
+  display: inline;
+}
+
+div.sheet-section-energy-communion-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-energy-communion-toggle[value="0"] ~ div.sheet-section-energy-communion-revealed {
+  display: none;
+}
+
+input.sheet-energy-communion-toggle[value="0"] ~ div.sheet-section-energy-communion-hidden {
+  display: inline;
+}
+
+/* MOLECULAR ALTERATION */
+div.sheet-section-molecular-alteration-revealed {
+  display: inline;
+}
+
+div.sheet-section-molecular-alteration-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-molecular-alteration-toggle[value="0"] ~ div.sheet-section-molecular-alteration-revealed {
+  display: none;
+}
+
+input.sheet-molecular-alteration-toggle[value="0"] ~ div.sheet-section-molecular-alteration-hidden {
+  display: inline;
+}
+
+/* PYROKINESIS */
+div.sheet-section-pyrokinesis-revealed {
+  display: inline;
+}
+
+div.sheet-section-pyrokinesis-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-pyrokinesis-toggle[value="0"] ~ div.sheet-section-pyrokinesis-revealed {
+  display: none;
+}
+
+input.sheet-pyrokinesis-toggle[value="0"] ~ div.sheet-section-pyrokinesis-hidden {
+  display: inline;
+}
+
+/* SUBATOMIC ALTERATION */
+div.sheet-section-subatomic-alteration-revealed {
+  display: inline;
+}
+
+div.sheet-section-subatomic-alteration-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-subatomic-alteration-toggle[value="0"] ~ div.sheet-section-subatomic-alteration-revealed {
+  display: none;
+}
+
+input.sheet-abilisubatomic-alterationties-toggle[value="0"] ~ div.sheet-section-subatomic-alteration-hidden {
+  display: inline;
+}
+
+/* TELEKINESIS */
+div.sheet-section-telekinesis-revealed {
+  display: inline;
+}
+
+div.sheet-section-telekinesis-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-telekinesis-toggle[value="0"] ~ div.sheet-section-telekinesis-revealed {
+  display: none;
+}
+
+input.sheet-telekinesis-toggle[value="0"] ~ div.sheet-section-telekinesis-hidden {
+  display: inline;
+}
+
+/* ANTI PSIONICS */
+div.sheet-section-anti-psionics-revealed {
+  display: inline;
+}
+
+div.sheet-section-anti-psionics-hidden {
+  /* display: inline-block; */
+  display: none;
+}
+
+input.sheet-anti-psionics-toggle[value="0"] ~ div.sheet-section-anti-psionics-revealed {
+  display: none;
+}
+
+input.sheet-anti-psionics-toggle[value="0"] ~ div.sheet-section-anti-psionics-hidden {
+  display: inline;
+}
+
+/* THIS IS THE PART OF THE CODE THAT HIDE AND REVEAL THE RELEVANT WEAPON SECTIONS */
+div.sheet-section-schematic,
+div.sheet-section-diceCount,
+div.sheet-section-diceType,
+div.sheet-section-damageBonus,
+div.sheet-section-damageMultiplier,
+div.sheet-section-penetrationPlus,
+div.sheet-section-rangeSquare,
+div.sheet-section-targetingBonus,
+div.sheet-section-rateOfFire,
+div.sheet-section-ammoCapacity,
+div.sheet-section-misc,
+div.sheet-section-weight,
+div.sheet-section-poison,
+div.sheet-section-poison,
+div.sheet-section-poison,
+div.sheet-section-poison,
+div.sheet-section-poison,
+div.sheet-section-energyWeapon {
+  display: none;
+}
+
+div.sheet-weaponTypeSection {
+  /* display: inline-block; */
+  display: inline;
+}
+
+input.sheet-attributes-toggle[value="1"] ~ div.sheet-section-attributes {
+  display: inline;
+}
+
+input.sheet-schematic-toggle[value="1"] ~ div.sheet-section-schematic {
+  display: inline;
+}
+
+input.sheet-diceCount-toggle[value="1"] ~ div.sheet-section-diceCount {
+  display: inline;
+}
+
+input.sheet-diceType-toggle[value="1"] ~ div.sheet-section-diceType {
+  display: inline;
+}
+
+input.sheet-damageBonus-toggle[value="1"] ~ div.sheet-section-damageBonus {
+  display: inline;
+}
+
+input.sheet-damageMultiplier-toggle[value="1"]
+  ~ div.sheet-section-damageMultiplier {
+  display: inline;
+}
+
+input.sheet-penetrationPlus-toggle[value="1"]
+  ~ div.sheet-section-penetrationPlus {
+  display: inline;
+}
+
+input.sheet-rangeSquare-toggle[value="1"] ~ div.sheet-section-rangeSquare {
+  display: inline;
+}
+
+input.sheet-targetingBonus-toggle[value="1"]
+  ~ div.sheet-section-targetingBonus {
+  display: inline;
+}
+
+input.sheet-rateOfFire-toggle[value="1"] ~ div.sheet-section-rateOfFire {
+  display: inline;
+}
+
+input.sheet-ammoCapacity-toggle[value="1"] ~ div.sheet-section-ammoCapacity {
+  display: inline;
+}
+
+input.sheet-weight-toggle[value="1"] ~ div.sheet-section-weight {
+  display: inline;
+}
+
+input.sheet-misc-toggle[value="1"] ~ div.sheet-section-misc {
+  display: inline;
+}
+
+/* --- END OF WEAPON SECTION CSS */
+
+/*this hides the radio button for each tab, sets the appropriate size and puts it above everything else */
+.charsheet input.sheet-tab {
+  /* Dimensions */
+  width: 120px;
+  height: 40px;
+
+  /* Misc */
+  cursor: pointer;
+  opacity: 0;
+  z-index: 9999;
+}
+
+/*this styles the span with the tab information and slides to the left, so it appears underneath the radio button*/
+.charsheet span.sheet-tab {
+  /* Dimensions */
+  display: inline-block;
+  margin-left: -123px;
+  width: 120px;
+  height: 40px;
+
+  /* Font */
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: #aaaaaa; /* Font color */
+
+  /* Misc */
+  border-radius: 15px 15px 15px 15px; /* Border values goes: top left, top right, bottom right, bottom left. */
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 250ms linear; /* Animates the button as it closes */
+}
+
+/*this modifies the span color once the radio button is selected so you know which tab is selected*/
+.charsheet input.sheet-tab1:checked + span.sheet-tab1,
+.charsheet input.sheet-tab2:checked + span.sheet-tab2,
+.charsheet input.sheet-tab3:checked + span.sheet-tab3,
+.charsheet input.sheet-tab4:checked + span.sheet-tab4,
+.charsheet input.sheet-tab5:checked + span.sheet-tab5,
+.charsheet input.sheet-tab6:checked + span.sheet-tab6,
+.charsheet input.sheet-tab7:checked + span.sheet-tab7,
+.charsheet input.sheet-tab8:checked + span.sheet-tab8,
+.charsheet input.sheet-tab9:checked + span.sheet-tab9,
+.charsheet input.sheet-tab10:checked + span.sheet-tab10,
+.charsheet input.sheet-tab99:checked + span.sheet-tab99 {
+  background: rgba(255, 215, 0, 1);
+  width: 120px;
+  height: 40px;
+  color: #000000;
+
+  border-radius: 15px 0px 0px 15px;
+  transition: all 400ms linear; /* Animates the button as it opens */
+
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+}
+
+/*----------- End Tab Setup -----------*/
+
+.sheet-repeating_skills {
+  display: flex;
+  justify-content: space-between; /* left */
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: row;
+}
+ {
+  display: flex;
+  justify-content: space-between; /* left */
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: row;
+}
+
+.repitem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
