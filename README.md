@@ -221,5 +221,6 @@ Additionally, I would like the option to be able to add a 2nd progression tree o
 
 We can talk about this some more too.
 
+Psionics should have a primary progression that grants a +1 when it is upgraded per the standard progression when Ability Points are put in. It should repeating fields under it that are treated like abilities. Each of these "sub"abilities should gain a +1 from the master psionic going up in a level, but also the individual "sub"abilities from it's own progression.
 
 
