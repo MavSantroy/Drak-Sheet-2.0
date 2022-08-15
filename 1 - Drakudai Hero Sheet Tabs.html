@@ -1,12 +1,30 @@
 <!--
     
     TO DO
+    0. Get progression trees going, along with a total of 5 potential progression trees. To explain. Everything starts off on the Impossible Progression Tree: each
+       level costs it's points to gain that level. If the next level is 50, it's going to cost 50 points to go from 49 to 50. When you gain a quirk point, you can 
+       buy a "feat" (a "Quirk" in Drakudai) that changes your progression tree... GOING FORWARD, but not retroactively. So when this happens, you would just start
+       using a different Progression Tree and move forward, you can do this multiple times until you get to the easiest one: 1, 2, 3, 4, 1, 2, 3, 4. (repeating every
+       four levels). The progression tree coding is there in the old sheet, and maybe in this new one. But it would have to be adapted (who knows, you may know of a better way
+       than this).
     1. add armor/shield defense scores 
     2. do the armor section
     3. do the shield section
-    4. artifacts section (repeating field)
-    5. weapons section (repeating fields)
-    6. PSIONICS (Repeating Field? Dropdown to select psionic for each)
+    4. Invenotry repeating fields should have checkboxes: Item, weapon, armor, shield, artifact, ship, vehicle.  When the corresponding box checked, the stat array
+       shoudl become visible, hiding the others.
+    5. If the boxes and the CSS to hide and do everything in 4 is done, I can create the fields for those so as not to be too tedious and time consuming for you.
+    6. Psionics should have a main page which displays your level for each psionic, buttons to "fire abilities" under the psionics. It should be a master action
+       page. There should also be 11 buttons which changes pages, dispalying the edit sheet for each psionic. There will be a lot of work in this section and it
+       needs to be designed a bit.
+    7. Fix repeating_fields for inventory (row disappears when reloading page)
+    8. Skills box on main page needs to be made into 1 column, and smaller to fit better
+    9. Health section should be cleaned up to fit better, not so much space. Defense Scores (ranged, mental button, melee button, saving throws) should fit better.
+    10. Each psionic should have the following factors:
+        a). Psionic level determines success
+        b). Raw Energy determines range, possible to do (not enough re = can't do it), multiplier (for every 10? Shoudl be changeable for testing purposes)
+        c). Each ability uses a specific amount of RE. They should be able to define how much they are using and also define how much is required for a multiplier
+            which is described in their ability in the PHB.
+        d). Burning Life Energy to create raw energy specifically to increase range, there should be an equation on it (5re:1 square/5ft?)
 
 -->
 
@@ -1145,23 +1163,66 @@
 
 
 <div class="sheet-inventory">
-    <h3>Inventory Items Go Here</h3>
-    <div class="sheet-block edit-inventory-grid-section">        
-        
-            <div class="edit-money sheet-block" style="padding-top:5px;">                
-                <input class="sheet-inputfield" style="width:10em;" type="number" title="Galactic Credits, Honored by APS and Civilized Sector Banks" name="attr_galactic_credits value="" >
-                <span class="sheet-blue-color sheet-center-2" value="">GC's</span>
-                <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabel" value="item_ Name" disabled/>
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelattribute" value="Attribute" style="width: 60px;" disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelVI" value="V.I." style="width: 52px;" disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelGen" value="Gen." style="width: 52px;" disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelpsi" value="Psionic"  disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelmisc" value="Misc" style="width:52px;" disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelartifact" value="Artifact" style="width:52px;" disabled />                        
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelprog" value="Progression" style="width:80px;" disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelpoints" value="Points" style="width:52px;" disabled />
-                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabellevel" value="Level" disabled />     
+    <!-- <b class="sheet-blue-color">VERY START</b> -->
+    <div> <!-- MONEY AT TOP -->
+        <!-- Galactic Credits -->
+        <input class="sheet-inputfield sheet-purple-color" type="hidden" name="attr_galactic_credits_header" value="Galactic Credits">            
+        <span class="sheet-purple-color" name="attr_galactic_credits_header" value="attr_galactic_credits_header" style="padding-left:7em;"></span>
+        <input class="sheet-inputfield sheet-purple-color" style="width:10em;" type="number" title="Galactic Credits" name="attr_galactic_credits" value="0">    
 
+        <!-- Gold Credits -->
+        <input class="sheet-inputfield sheet-gold-color" type="hidden" name="attr_gold_credits_header" value="Gold Credits">            
+        <span class="sheet-gold-color" name="attr_gold_credits_header" value="attr_gold_credits_header"></span>
+        <input class="sheet-inputfield sheet-gold-color" style="width:10em;" type="number" title="Gold Credits" name="attr_galactic_credits" value="0"> 
+        <!-- Iron Credits -->
+        <input class="sheet-inputfield sheet-silver-color" type="hidden" name="attr_iron_credits_header" value="Iron Credits">            
+        <span class="sheet-silver-color" name="attr_iron_credits_header" value="attr_iron_credits_header"></span>
+        <input class="sheet-inputfield sheet-silver-color" style="width:10em;" type="number" title="Iron Credits" name="attr_iron_credits" value="0"> 
+    </div>
+    <!-- <b class="sheet-blue-color">END OF MONEY</b> -->
+        <div class="sheet-block edit-inventory-grid-section">                   
+                <div class="edit-inventory-entries">
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnameheader" value="Item Name"style="width: 125px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnamedescriptionheader" value="Description"  style="width: 420px;" disabled />
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnamequantityheader" value="Quantity" style="width: 75px;" disabled />                    
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnameweightheader" value="Weight" style="width: 52px;" disabled />        
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnamesizeheader" value="Size" style="width: 70px;" disabled />        
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnametechlevelheader" value="Tech #" style="width: 52px;" disabled />        
+                  <fieldset class="sheet-block repeating_inventory">                                                
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemname" value="Item Name" style="width: 125px;"/>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnamedescription" value="Description" style="width: 420px;"/>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnamequantity" value="0" type="number" style="width: 75px;"/>                    
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnameweight" value="0" type="number" style="width: 52px;"/>        
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnameweight" value="Small" type="text" style="width: 70px;"/>        
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_itemnametechlevel" value="0" type="number" style="width: 52px;"/>        
+                  </fieldset>
+                </div>            
+        </div>
+</div>
+    <!-- <div class="edit-inventory-grid-section">                            
+            <div class="sheet-block edit-inventory sheet-center">
+                <span class="sheet-blue-color" name="attr_item_name_header" value="Item Name"></span>    
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" type="hidden" name="repeating_item_namelabel" value="Item_Name" disabled/>
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>    
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelattribute" value="Attribute" style="width: 60px;" disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelVI" value="V.I." style="width: 52px;" disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelGen" value="Gen." style="width: 52px;" disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelpsi" value="Psionic"  disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelmisc" value="Misc" style="width:52px;" disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelartifact" value="Artifact" style="width:52px;" disabled />                        
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelprog" value="Progression" style="width:80px;" disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabelpoints" value="Points" style="width:52px;" disabled />
+                <span name="repeating_item_namelabel" value="repeating_item_namelabel"></span>
+                    <input class="sheet-center sheet-inputfield sheet-gold-color" name="repeating_item_namelabellevel" value="Level" disabled />     
+            </div>
+            <div>
                 <fieldset class="repeating_items">                
                     <input class="sheet-inputfield sheet-blue-color" type="text" name="attr_item_name" value="" />
 
@@ -1195,11 +1256,14 @@
                     
                     <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_item_miscbonus" value="0" style="width:52px;">                        
                     <input class="sheet-inputfield sheet-dropdown sheet-blue-color" type="number" name="attr_item_artifactbonus" value="0" style="width:52px;">                                                
-                    
-                    
                 </fieldset>
-            </div>        
-
+            </div>                    -->
+            <div class="sheet-block edit-contacts" style="padding-top: 10px;">
+                <fieldset class="sheet-block repeating_contacts">                
+                    <input class="sheet-inputfield sheet-blue-color" type="text" name="repeating_contact" value="Name" style="width: 15em;">
+                    <input class="sheet-inputfield sheet-blue-color" type="text" name="repeating_contactnotes" value="Data" style="width: 45em;">
+                </fieldset>
+            </div>
         </div>       
     </div>
 </div>
