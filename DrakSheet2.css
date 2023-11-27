@@ -1,0 +1,2231 @@
+/*Configure the tab button*/
+.charsheet .sheet-tabstoggle:not([value="character"]) ~ div.sheet-character,
+.charsheet .sheet-tabstoggle:not([value="equipped"]) ~ div.sheet-equipped,
+.charsheet .sheet-tabstoggle:not([value="editskills"]) ~ div.sheet-editskills,
+.charsheet .sheet-tabstoggle:not([value="inventory"]) ~ div.sheet-inventory,
+.charsheet .sheet-tabstoggle:not([value="editcharacter"]) ~ div.sheet-editcharacter,
+.charsheet .sheet-tabstoggle:not([value="editpsionics"]) ~ div.sheet-editpsionics,
+.charsheet .sheet-tabstoggle:not([value="editship"]) ~ div.sheet-editship,
+.charsheet .sheet-tabstoggle:not([value="npc"]) ~ div.sheet-npc {
+    display: none;
+}
+
+.charsheet div.sheet-main-buttons {
+  display: grid;     
+  width: 827px;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px;
+  grid-template-rows: 28px;      
+  grid-gap: auto;   
+}
+
+/*Configure the tab buttons*/
+.sheet-tabstoggle1:not([value="body-discipline"]) ~ div.sheet-body-discipline,
+.sheet-tabstoggle1:not([value="causation"]) ~ div.sheet-causation,
+.sheet-tabstoggle1:not([value="clairvoyance"]) ~ div.sheet-clairvoyance,
+.sheet-tabstoggle1:not([value="deflection"]) ~ div.sheet-deflection,
+.sheet-tabstoggle1:not([value="domination"]) ~ div.sheet-domination,
+.sheet-tabstoggle1:not([value="energy-communion"]) ~ div.sheet-energy-communion,
+.sheet-tabstoggle1:not([value="molecular-alteration"]) ~ div.sheet-molecular-alteration,
+.sheet-tabstoggle1:not([value="pyrokinesis"]) ~ div.sheet-pyrokinesis,
+.sheet-tabstoggle1:not([value="subatomic-alteration"]) ~ div.sheet-subatomic-alteration,
+.sheet-tabstoggle1:not([value="telekinesis"]) ~ div.sheet-telekinesis,
+.sheet-tabstoggle1:not([value="anti-psionics"]) ~ div.sheet-anti-psionics {
+    display: none;
+}
+
+/*Configure the weapon-inventory buttons*/
+.charsheet .sheet-tabstoggle2:not([value="melee"]) ~ div.sheet-inventory-melee,
+.charsheet .sheet-tabstoggle2:not([value="ranged"]) ~ div.sheet-inventory-ranged,
+.charsheet .sheet-tabstoggle2:not([value="explosives"]) ~ div.sheet-inventory-explosives {
+    display: none;
+}
+
+
+
+
+/* COLOR THEME */
+/* 
+    blue: #278BCE 
+    grey: #7d7d7d
+    yellow: rgba(255, 215, 0, 1);
+    red: #FF2400
+*/
+/*----------- LABELS -------------*/
+/*
+h2 {
+  grid-column: 1 / -1;
+  background: rgb(51, 60, 87);
+  color: rgba(255, 215, 0, 1);
+  line-height: 1;  
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 5px;
+}
+*/
+h2 {
+  grid-column: 1 / -1;
+  background: rgb(51, 60, 87);
+  color: rgba(255, 215, 0, 1);
+  line-height: 1;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center; /* Centers text horizontally */
+  margin: 0; /* Remove any default margin */
+  padding: 0 5px; /* 5px padding to the left and right */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin-bottom: 5px;
+  display: grid; /* Define this as a grid container */
+  align-content: center; /* Centers content vertically inside the grid */
+  width: 100%;
+}
+
+
+h3 {
+  font-size: 12px;
+  color: #278BCE;
+  line-height: 1;
+  text-align: center;
+}
+h4 {
+  font-size: 10px;
+  line-height: 1;
+  color: #278BCE;
+  text-align: center;
+}
+
+.label {
+}
+
+.charsheet {
+    background: #282828;
+}
+
+.charsheet .sheet-width75 {
+  width: 75px;
+}
+
+.sheet-center {
+    margin: auto;       
+  }
+
+.sheet-center-2 {
+  padding-left: 3px;
+  padding-top: 6px;
+}
+
+.sheet-subheading {
+  color: #278bce;
+  font-size: 16px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+}
+
+.sheet-subsubheading {
+  color: #278bce;
+  font-size: 12px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+  width: 200px;
+}
+
+.sheet-goldenHeading {
+  color: #ffd700;
+  font-size: 20px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+}
+
+.text {
+  color: grey;  
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.sheet-green-color {
+    color: #2cff01;
+  }
+
+.sheet-yellow-color {
+    color: #fffb00;
+  }
+
+.sheet-red-color {
+  color: #ff2400;
+}
+
+.sheet-blue-color {
+  color: #278bce;
+}
+
+.sheet-pink-color {
+  color: pink;
+}
+
+.sheet-purple-color {
+  color: rgb(245, 52, 245);
+}
+
+.sheet-grey-color {
+  /*color: #505050;*/
+  color: 278BCE;
+  
+}
+
+.sheet-white-color {
+    /*color: #505050;*/
+    color: #ffffff;
+  }
+
+  .sheet-silver-color {
+    /*color: #505050;*/
+    color:silver;
+  }
+
+.sheet-gold-color {
+  color: #ffd700;
+}
+
+label {
+  color: rgba(255, 215, 0, 1);
+  font-size: 21px;
+  font-family: "Orbitron", sans-serif;
+  font-variant: small-caps;
+  font-weight: 400;
+}
+
+.sheet-borderedContainer {
+  background: #111111;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: #555555;
+  padding: 5px;
+}
+
+.sheet-dropdown {
+    transition: all 0.4s ease-in-out;
+    width: 100px;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);    
+    color:#278bce;
+  }
+
+  .sheet-dropdown-red {
+    transition: all 0.4s ease-in-out;
+    width: 100px;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);    
+    color:red;
+  } 
+
+  .sheet-dropdown120 {
+    transition: all 0.4s ease-in-out;
+    width: 120px;
+    height: 24px
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);    
+    color: #278bce;
+  }
+
+.sheet-inputfield {
+    outline: none;
+    box-sizing: border-box;    
+    width: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    borborder-boxdropdownder-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;
+    text-align: center;    
+  }
+
+  .sheet-inputfield:disabled {
+    outline: none;
+    box-sizing: border-box;
+    width: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+  }
+
+  .sheet-inputfield:read-only {
+    outline: none;
+    box-sizing: border-box;
+    width: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+  }
+  
+  .sheet-inputfield:hover {
+      border-color: #f8f8f27e;
+      color: #ffffff;
+    }
+    
+    .sheet-inputfield:focus {
+      border-color: #f8f8f2;
+      color: #ffffff;
+    }
+
+.sheet-inputfield52 {
+  outline: none;
+  box-sizing: border-box;    
+  width: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+  text-align: center;    
+}
+  
+  .inputfield52:disabled {
+    outline: none;
+    box-sizing: border-box;
+    width: 52px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+  }
+
+  .sheet-inputfield52:read-only {
+    outline: none;
+    box-sizing: border-box;
+    width: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+  }
+  
+  .inputfield52:hover {
+      border-color: #f8f8f27e;
+      color: #ffffff;
+    }
+    
+    .inputfield52:focus {
+      border-color: #f8f8f2;
+      color: #ffffff;
+    }
+
+.sheet-inputfield60 {
+  outline: none;
+  box-sizing: border-box;
+  width: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+  text-align: center;      
+  }
+
+  .sheet-inputfield60:disabled {
+  outline: none;
+  box-sizing: border-box;
+  width: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;    
+  text-align: center;
+  color:#278bce;
+  }
+
+  .sheet-inputfield60:read-only {
+    outline: none;
+    box-sizing: border-box;
+    width: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+  }
+  
+  .sheet-inputfield60:hover {
+      border-color: #f8f8f27e;
+      color: #ffffff;
+  }
+  
+  .sheet-inputfield60:focus {
+      border-color: #f8f8f2;
+      color: #ffffff;
+  }
+
+.sheet-inputfield75 {
+  outline: none;
+  box-sizing: border-box;
+  width: 75px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+  text-align: center;      
+  }
+
+  .sheet-inputfield75:disabled {
+  outline: none;
+  box-sizing: border-box;
+  width: 75px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;    
+  text-align: center;
+  color:#278bce;
+  }
+
+  .sheet-inputfield75:read-only {
+    outline: none;
+    box-sizing: border-box;
+    width: 75px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+  }
+  
+  .sheet-inputfield75:hover {
+      border-color: #f8f8f27e;
+      color: #ffffff;
+  }
+  
+  .sheet-inputfield75:focus {
+      border-color: #f8f8f2;
+      color: #ffffff;
+  }
+
+  .sheet-inputfield120 {
+    outline: none;
+    box-sizing: border-box;    
+    width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;
+    text-align: center;    
+  }
+
+.inputfield120:disabled {
+  outline: none;
+  box-sizing: border-box;
+  width: 120px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;    
+  text-align: center;
+}
+
+.sheet-inputfield120:read-only {
+  outline: none;
+  box-sizing: border-box;  
+  width: 120px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;    
+  text-align: center;
+}
+
+.inputfield120:hover {
+    border-color: #f8f8f27e;
+    color: #ffffff;
+  }
+  
+.inputfield200:focus {
+  border-color: #f8f8f2;
+  color: #ffffff;
+}
+
+.sheet-inputfield200 {
+  outline: none;
+  box-sizing: border-box;
+  width: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;
+  text-align: center;    
+  color:#278bce;
+  }
+
+.sheet-inputfield200:disabled {
+outline: none;
+box-sizing: border-box;
+width: 200px;
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 5px;
+background: rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease-in-out;    
+text-align: center;
+color:#278bce;
+}
+
+.sheet-inputfield200:read-only {
+  outline: none;
+  box-sizing: border-box;
+  width: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease-in-out;    
+  text-align: center;
+}
+
+.sheet-inputfield200:hover {
+    border-color: #f8f8f27e;
+    color: #ffffff;
+}
+
+.sheet-inputfield200:focus {
+    border-color: #f8f8f2;
+    color: #ffffff;
+}
+
+    .sheet-inputfield-health {
+      outline: none;
+      box-sizing: border-box;    
+      width: 52px;      
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.5);
+      transition: all 0.4s ease-in-out;
+      text-align: center;    
+      color: #278bce;
+    }
+  
+    .sheet-inputfield-health:disabled {
+      outline: none;
+      box-sizing: border-box;
+      width: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.5);
+      transition: all 0.4s ease-in-out;    
+      text-align: center;
+      color: #278bce;
+
+    }
+    
+    .sheet-inputfield-health:hover {
+        border-color: #278bce;;
+        color: #278bce;
+      }
+      
+      .sheet-inputfield-health:focus {
+        border-color: #f8f8f2;
+        color: #278bce;
+      }
+
+.sheet-inputfieldlc {
+    outline: none;
+    box-sizing: border-box;
+    width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;
+    text-align: center;    
+    }
+
+    .sheet-inputfieldlc:disabled {
+    outline: none;
+    width: 120px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease-in-out;    
+    text-align: center;
+    }
+
+    .sheet-inputfieldlc:read-only {
+      outline: none;
+      width: 120px;
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.5);
+      transition: all 0.4s ease-in-out;    
+      text-align: center;
+      }
+    
+    .sheet-inputfieldlc:hover {
+        border-color: #f8f8f27e;
+        color: #ffffff;
+    }
+    
+    .sheet-inputfieldlc:focus {
+        border-color: #f8f8f2;
+        color: #ffffff;
+    }    
+
+      .sheet-inputfield-blank {
+        outline: none;
+        box-sizing: border-box;
+        width: 52px;
+        border: 1px solid #282828;
+        border-radius: 5px;
+        background:#282828;
+        transition: all 0.4s ease-in-out;
+        text-align: center;    
+        color:#278bce;
+        }
+    
+        .sheet-inputfield-blank:disabled {
+        outline: none;
+        box-sizing: border-box;
+        border: 1px solid #282828;
+        border-radius: 5px;
+        background: #282828;
+        transition: all 0.4s ease-in-out;    
+        text-align: center;
+        color:#278bce;
+        }
+        
+        .sheet-inputfield-blank:hover {
+            border-color:#282828;
+            color: #282828;
+        }
+        
+        .sheet-inputfield-blank:focus {
+            border-color:#282828;
+            color: #282828;
+        }
+
+    .sheet-inputfield-combat-style {
+        outline: none;
+        box-sizing: border-box;
+        width: 60px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.5);
+        transition: all 0.4s ease-in-out;
+        text-align: center;    
+      }
+    
+      .sheet-inputfield-combat-style:disabled {
+        outline: none;
+        box-sizing: border-box;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.5);
+        transition: all 0.4s ease-in-out;    
+        text-align: center;
+      }
+      
+      .sheet-inputfield-combat-style:hover {
+          border-color: #f8f8f27e;
+          color: #ffffff;
+        }
+        
+        .sheet-inputfield-combat-style:focus {
+          border-color: #f8f8f2;
+          color: #ffffff;
+        }
+
+.charsheet div.sheet-block{    
+    padding: 5px;
+    border: 1.5px solid #278bce;    
+}
+
+.charsheet div.sheet-block-2px{    
+  padding: 5px;
+  border: 1.5px solid #278bce;    
+}
+
+/* START OF CHARACTER ACTION PAGE */
+.charsheet .sheet-grid-section {
+  display: grid;
+  grid-gap: 5px;
+  width: 100%;  
+  grid-template-columns: 140px 687px;
+  grid-template-rows: auto; 
+  grid-template-areas: 
+  "core-stats   health"
+  "headers      headers"
+  "skills       skills"
+}
+
+.sheet-core-stats {   
+    display: grid; 
+    grid-area: core-stats;    
+    grid-template-columns: 120px;
+    grid-auto-rows: 28px;
+    grid-gap: 5px;
+    text-align: right;
+    align-content: center;
+  }
+
+.sheet-core-health {  
+  display: grid;
+  grid-area: health;
+  grid-template-columns: 75px 75px 85px 52px 52px 52px 60px 60px 60px 52px;
+  grid-auto-rows: 28px;
+  grid-gap: 1px;    
+  column-gap: 5px;
+  text-align: center;  
+}
+
+.sheet-core-armor-header {
+  grid-area: header; 
+  width: 827px;
+  grid-template-columns: 500px ; /* name, dmg, dmg+, mult, rf, P+, range, ammo, +tohit, Tech Level */
+  grid-auto-rows: 28px;
+  grid-gap: 5px;    
+  text-align: center;
+  font-variant-caps: all-petite-caps;
+  font-size: large;
+  color:#ff2400;
+}
+
+.sheet-core-armor {
+  grid-area: armor;  
+  display: grid;
+  grid-template-columns: 120px 60px 60px 52px 52px 52px 52px 52px 52px 52px 52px 52px; /* name, hitpoints, P+, regen, shrug,, defense bonus, cds, str, dex, con, movement*/
+  grid-auto-rows: 28px;
+  grid-gap: 2px;    
+  column-gap: 5px;
+  color:#278bce;
+}
+
+.sheet-combat {
+  display: grid;
+  grid-area: combat;
+  grid-template-columns: 60px 125px 60px 60px 52px 52px 52px 52px 52px 60px 60px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 5px;    
+  text-align: center;
+}
+
+.sheet-main-ranged-weapons {
+    grid-area: ranged;
+    display: grid;     
+    width: 827px;
+    grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px; 
+    grid-template-rows: 28px;      
+}
+
+.sheet-core-stats h3 {
+    grid-column: 1 / -1;    
+    text-align: center;
+    grid-row: 1;    
+}
+
+.sheet-core-stats h4 {
+  grid-column: 1 / -1;    
+  text-align: center;
+  grid-row: 5;    
+  color: gold;
+}
+
+.sheet-core-health h3 {
+  grid-column: 1 / -1;    
+  text-align: center;
+  grid-row: 1;    
+}
+
+.sheet-combat h3{
+    grid-column: 1 / -1;
+    text-align: center;
+    grid-row: 1;     
+    color: gold;
+    font-size: large;   
+    height: 25px;
+}
+
+/*.sheet-core-skills {
+  grid-area: skills;
+  display: grid;
+  width: 820px;
+  grid-template-columns: 80px 60px 60px 80px 60px 60px 80px 60px 60px 80px 60px 60px;
+  grid-template-rows: 28px;
+  font-size: x-small;
+} */
+.sheet-skill-headers {
+  display: grid;
+  grid-area: headers;    
+  grid-template-columns: 70px 120px 90px 52px 52px 90px 52px 52px 52px 52px 52px 75px;
+  grid-template-rows: 28px;    
+  grid-auto-rows: 28px;    
+  grid-gap: 2px;   
+  text-align: center;     
+}
+.sheet-core-skills {
+display: flex;
+grid-area: skills;      
+font-size: smaller;
+grid-template-columns: 70px 120px 90px 52px 52px 90px 52px 52px 52px 52px 52px 75px;
+grid-template-rows: 28px;    
+grid-auto-rows: 28px;    
+grid-gap: 2px;   
+text-align: center;    
+
+}
+
+.sheet-skills h3{  
+  grid-column: 1 / -1;
+  text-align: center;
+  grid-row: 1;        
+}
+
+.charsheet .sheet-core-skill-data{
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+.charsheet .sheet-core-skill-data> * {
+  flex: 1;
+}
+
+.charsheet input.sheet-toggle-show:not(:checked) ~ div.sheet-body,
+.charsheet input.sheet-toggle-hide:checked ~ div.sheet-body {
+    display: none;
+}
+/* END OF CHARACTER ACTION PAGE */
+
+/* START OF EQUIPPED SECTION */
+
+.sheet-equipped-grid {
+    display: grid;
+    width: 100%;  
+    grid-gap: 5px;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: auto auto auto auto; 
+    grid-template-areas:   
+    "header  header  header"
+    "armor   armor   armor"
+    "melee   melee   melee"
+    "ranged  ranged  ranged"
+  }
+
+.sheet-equipped-header {
+    grid-area: header; 
+    width: 827px;
+    grid-template-columns: 500px ; /* name, dmg, dmg+, mult, rf, P+, range, ammo, +tohit, Tech Level */
+    grid-auto-rows: 28px;
+    grid-gap: 5px;    
+    text-align: center;
+    font-variant-caps: all-petite-caps;
+    font-size: large;
+    color:#ff2400;
+  }
+
+.sheet-equipped-armor {
+    grid-area: armor;  
+    display: grid;
+    grid-template-columns: 120px 75px 75px 52px 60px 60px 52px 52px 52px 52px 52px 52px; /* name, hitpoints, P+, regen, shrug,, defense bonus, cds, str, dex, con, movement*/
+    grid-auto-rows: 28px;
+    grid-gap: 2px;    
+    column-gap: 5px;
+    color:#278bce;
+  }
+
+.sheet-equipped-armor h3 {
+    grid-column: 6 / -6;    
+    text-align: center;
+    grid-row: 1;    
+    color:#278bce;
+  }
+
+.sheet-equipped-combat-melee {
+    display: grid;
+    grid-area: melee;
+    grid-template-columns: 100px 90px 75px 75px 60px 60px 60px 60px 60px 75px 75px;
+    grid-template-rows: auto;    
+    grid-auto-rows: 28px;    
+    grid-gap: 3px;    
+  }
+
+.sheet-equipped-repeating-ranged {
+  grid-area: ranged;
+  width: 822px;
+}
+
+.sheet-equipped-ranged-weapons {
+  display: grid;  
+  width: 100%;
+  grid-template-columns: 120px 75px 60px 60px 60px 60px 60px 60px 60px 60px 60px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 5px;    
+}
+
+
+.sheet-equipped-weapons h3 {  
+    grid-column: 13 / -13;    
+    text-align: center;
+    grid-row: 0;    
+    color:#278bce;
+  }
+
+/* END OF EQUIPPED SECTION */
+
+/* START OF EDIT SKILLS PAGE */
+
+.sheet-edit-skills-grid-section{
+  display: grid;
+  grid-gap: 5px;  
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto; 
+  grid-template-areas: 
+  "edit-ability"    
+  "edit-skill-headers"    
+  "edit-repeating-skills"
+}
+
+.sheet-edit-ranged {
+  display: grid;
+  grid-area: edit-ability;
+  grid-template-columns: 90px 90px 52px 52px 52px 75px 52px 52px 52px 52px 52px 75px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 3px;    
+  color: #278bce;
+  text-align: center;
+}
+
+.sheet-edit-melee {
+  display: grid;
+  grid-area: edit-ability;
+  grid-template-columns: 90px 90px 75px 52px 52px 52px 52px 52px 60px 60px 52px 75px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 3px;    
+  color: #278bce;
+  text-align: center;
+}
+
+.sheet-edit-ability h3 {
+  grid-column: 1 / -1;    
+  text-align: center;
+  grid-row: 1;    
+  width: 820px;
+  text-align: center;
+  font-size: x-large;
+  color: gold;
+  background-color: rgb(60, 56, 87);
+  row-gap: 5px;  
+}
+
+.sheet-edit-combat h3 {
+  grid-column: 1 / -1;    
+  text-align: center;
+  grid-row: 1;    
+  width: 820px;
+  text-align: center;
+  font-size: x-large;
+  color: gold;
+  background-color: rgb(60, 56, 87);
+  row-gap: 5px;  
+}
+
+
+.sheet-edit-skill-headers {
+  display: grid;
+  grid-area: edit-skill-headers;    
+  grid-template-columns: 70px 120px 90px 52px 52px 90px 52px 52px 52px 52px 52px 75px;
+  grid-template-rows: 28px;    
+  grid-auto-rows: 28px;    
+  grid-gap: 2px;   
+  text-align: center;     
+}
+
+.sheet-edit-repeating-skills {
+  display: grid;
+  grid-area: edit-repeating-skills;      
+  font-size: smaller;
+  grid-template-columns: 70px 120px 90px 52px 52px 90px 52px 52px 52px 52px 52px 75px;
+  grid-template-rows: 28px;    
+  grid-auto-rows: 28px;    
+  grid-gap: 2px;   
+  text-align: center;     
+}
+
+.sheet-edit-skills h3 {
+  grid-column: 5 / -5;    
+  text-align: center;
+  grid-row: 1;    
+}
+
+.sheet-skills-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  grid-gap: 5px;
+}
+
+
+.sheet-edit-skills h4 {
+  color: #278bce;    
+}
+
+.sheet-edit-combat b {
+  color: gold;    
+  font-size: medium;
+}
+
+.sheet-edit-ability b {
+  color: gold;    
+  font-size: medium;
+}
+
+.sheet-edit-repeating-skills h4 {
+  color: #278bce;    
+  grid-template-columns: 100px 125px 60px 52px 52px 60px 52px 52px 100px 52px 52px;
+}
+
+.sheet-skills-content {
+  display: none;
+}
+
+.sheet-skills-content.show {
+  display: block;
+}
+
+
+
+/* END OF EDIT SKILLS & COMBAT PAGE */
+
+/* START OF INVENTORY EDIT PAGE */
+
+/* Inventory Display Menu */
+.sheet-display_toggle[name="attr_armor-display"][value="0"] ~ .sheet-inventory-armor ,
+.sheet-display_toggle[name="attr_melee-display"][value="0"] ~ .sheet-inventory-melee,
+.sheet-display_toggle[name="attr_ranged-display"][value="0"] ~ .sheet-inventory-ranged,
+.sheet-display_toggle[name="attr_explosives-display"][value="0"] ~ .sheet-inventory-explosives,
+.sheet-display_toggle[name="attr_items-display"][value="0"] ~ .sheet-edit-inventory-entries,
+.sheet-display_toggle[name="attr_artifacts-display"][value="0"] ~ .sheet-edit-inventory-artifacts,
+.sheet-display_toggle[name="attr_contacts-display"][value="0"] ~ .sheet-edit-inventory-contact-entries {
+  display: none !important;
+}
+
+.charsheet .sheet-edit-inventory-weapon-buttons {
+  --blue: #278bce;
+  --black: #282828;
+  --yellow: #ffd700;
+  background: black;
+  background: rgb(51, 60, 87);
+  border: 4px solid var(--blue);
+  border-width: 0 5px;
+  padding: 2px 5px;
+  display: flex;
+  grid-area: display-menu;
+}
+.charsheet .sheet-edit-inventory-weapon-buttons h4 {
+  color: var(--blue);
+  font-size: 12px;
+  line-height: 1;
+  flex: 1;
+}
+.charsheet .sheet-edit-inventory-weapon-buttons label {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+  padding: 5px;
+  margin: 5px;
+
+  background-color: var(--black);
+  text-align: center;
+  
+  border: 1px solid #000;
+  border-width: 1px 5px;
+  cursor: pointer;
+  order: 2;
+}
+
+.charsheet .sheet-edit-inventory-weapon-buttons input[type=checkbox] {
+  appearance: none;
+  border: none;
+  background: none;
+  flex: 0;
+}
+.charsheet .sheet-edit-inventory-weapon-buttons input[type=hidden][value="on"] + label {
+  order: 1;
+  background-color: var(--blue);
+}
+.charsheet .sheet-edit-inventory-weapon-buttons input[type=hidden][value="on"] + label h4 {
+  color: var(--black);
+}
+.charsheet div.sheet-edit-inventory-grid-section{
+  display: grid;
+  grid-gap: 5px;  
+  grid-template-columns: 100%;
+  /* grid-template-rows: auto auto auto auto; */
+  grid-template-areas:     
+  "display-menu"
+  "edit-inventory-weapon-buttons"
+  "edit-armor"
+  "edit-melee"
+  "edit-ranged"
+  "edit-explosives"
+  "edit-artifacts"
+  "edit-inventory"
+  "edit-contacts"
+}
+ .sheet-inventory-armor {
+  grid-area: edit-armor;
+} 
+.sheet-inventory-melee {
+  grid-area: edit-melee;
+}
+.sheet-inventory-ranged {
+  grid-area: edit-ranged;  
+}
+.sheet-inventory-explosives {
+  grid-area: edit-explosives;
+}
+.sheet-edit-inventory-entries {
+  grid-area: edit-inventory;
+}
+.sheet-edit-inventory-artifacts {
+  grid-area: edit-artifacts;
+}
+
+.charsheet div.sheet-edit-armor-entries {
+  grid-area: edit-armor;    
+  display: grid;
+  grid-template-columns: 100px 45px 45px 60px 45px 45px 45px 45px 45px 45px 45px 45px 45px 60px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 5px;    
+  column-gap: 5px;
+  column-gap: 5px;  
+  text-align: center;
+  color:#278bce;
+}
+
+.charsheet div.sheet-edit-armor-entries  h4 {   
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+
+.sheet-edit-weapon-entries {
+  grid-area: edit-weapons;  
+  width: 100%;
+  display: grid;
+  grid-template-columns: 75px 52px 75px 52px 52px 52px 52px 52px 52px 52px 52px 60px 60px 52px 52px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  color:#278bce;
+}
+
+.ui-dialog .charsheet div.sheet-edit-weapon-entries input {
+  width: 100%;
+}
+
+.sheet-edit-weapon-entries h4 {   
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+
+.sheet-edit-explosives-entries {
+  grid-area: edit-explosives;  
+  display: grid;
+  grid-template-columns: 100px 60px 60px 100px 60px 60px 60px 60px 100px 60px 60px 52px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 5px;    
+  column-gap: 1px;  
+  color:#278bce;
+}
+
+.ui-dialog .charsheet div.sheet-edit-explosives input {
+  width: 100%;
+}
+
+.charsheet div.sheet-edit-explosives h4 {   
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+ 
+.sheet-edit-artifact-entries {
+  grid-area: edit-artifacts;  
+  display: grid;
+  grid-template-columns: 120px 75px 100px 65px 70px 60px 60px 60px 60px 60px 60px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 1px;    
+  column-gap: 3px;  
+  color:#278bce;
+}
+
+.ui-dialog .charsheet div.sheet-edit-artifact-entries input {
+  width: 100%;
+}
+
+.charsheet div.sheet-edit-artifact-entries h4 {   
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+
+
+ 
+div.sheet-edit-armor-entries {
+  grid-area: edit-armor;    
+  display: grid;
+  grid-template-columns: 100px 45px 45px 60px 45px 45px 45px 45px 45px 45px 45px 45px 45px 60px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 5px;    
+  column-gap: 5px;
+  column-gap: 5px;  
+  text-align: center;
+  color:#278bce;
+}
+
+.ui-dialog .charsheet div.sheet-edit-armor-entries input {
+  width: 100%;
+}
+
+.sheet-edit-armor-entries h4 {   
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+ .sheet-edit-melee-entries {
+  grid-area: edit-melee;  
+  display: grid;
+  grid-template-columns: 100px 52px 52px 60px 60px 52px 52px 52px 60px 60px 60px 52px 52px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 3px;    
+  column-gap: 5px;  
+  color:#278bce;
+}
+
+.ui-dialog .charsheet div.sheet-edit-melee-entries input {
+  width: 100%;
+}
+
+.charsheet div.sheet-edit-melee-entries h4 {   
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+
+ div.edit-inventory-weapon-buttons{        
+  grid-area: psi-buttons;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;    
+  grid-auto-rows: 28px;
+  grid-gap: 5px;                
+}
+
+.charsheet div.sheet-edit-inventory-entries {
+  grid-area: edit-inventory;  
+  grid-template-columns: 125px 400px 52px 60px 60px 52px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 5px;    
+  column-gap: 5px;  
+  
+}
+
+.charsheet div.sheet-edit-inventory-entries h4 { 
+  grid-column: 7 / -7; 
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+
+.charsheet div.sheet-edit-inventory-contact-entries {
+  grid-area: edit-contacts;
+  grid-template-columns: 125px 400px ;
+  grid-template-rows: auto;        
+  grid-gap: 10px;    
+  column-gap: normal;  
+  
+}
+
+.charsheet div.sheet-edit-inventory-contact-entries h4 { 
+  grid-column: 7 / -7; 
+  grid-row: 1;
+  text-align: center;
+  color: gold;
+ }
+
+/* END OF INVENTORY EDIT PAGE */
+
+/* START OF CHARACTER EDIT PAGE */
+.charsheet .sheet-edit-character-grid-section {
+    display: grid;
+    grid-gap: 5px;
+    column-gap: 5px;
+    grid-template-columns: 415px 415px ;
+    grid-template-rows: 28px; 
+    grid-template-areas:     
+    "edit-character-header edit-character-header"    
+    "edit-core-stats edit-core-stats"
+    "edit-health edit-health"
+    "edit-"
+    
+}
+
+.charsheet div.sheet-edit-character-header {
+  grid-area: edit-character-header;    
+  grid-template-columns: 133.33px 133.33px 133.33px 133.33px 133.33px 133.33px;
+  grid-template-rows: 1;  
+}
+
+.charsheet div.sheet-edit-character-core-stats {
+  display: grid;
+  grid-area: edit-core-stats;
+  grid-template-columns: 52px 50px 50px 52px 52px 52px 52px 52px 52px 52px 52px 52px 52px 52px 52px;
+  grid-template-rows: 25px;    
+  grid-auto-rows: 25px;    
+  grid-gap: 2px;    
+  column-gap: auto;  
+  text-align: center;
+}
+
+.charsheet div.sheet-edit-character-health {  
+  display: grid;
+  grid-area: edit-health;  
+  grid-template-columns: 52px 60px 60px 60px 60px 60px 52px 52px 52px 52px 52px 52px 52px 52px 52px;  
+  color:#278bce;    
+  text-align: center;
+  font-size: small;
+}
+
+.charsheet div.sheet-edit-character-armor {
+  display: grid;
+  grid-area: edit-armor;    
+  grid-template-columns: 52px 52px 52px 52px 52px 52px 52px 52px;  
+  color:#278bce;    
+  text-align: center;
+  font-size: small;
+}
+
+.charsheet div.sheet-edit-character-header h4 {  
+  color:gold;
+  font-variant-caps: small-caps;
+  font-size: large;  
+  text-align: center;
+}
+
+.charsheet div.sheet-edit-character-core-stats h4 {  
+  color:#278bce;  
+  text-align: center;
+}
+
+.charsheet .sheet-core-bd {
+  color:#2cff01;
+  text-align: center;
+}
+
+.charsheet .sheet-core-ca {
+  color: gold;
+  text-align: center;
+}
+.charsheet .sheet-core-df {
+  color: silver;
+  text-align: center;
+}
+
+.charsheet .sheet-core-dm {
+  color:orangered;
+  text-align: center;
+}
+
+.charsheet .sheet-core-cl {
+  color: lightseagreen;
+  text-align: center;
+}
+
+.charsheet .sheet-core-q {
+  color:white;
+  text-align: center;
+}
+
+.charsheet .sheet-core-tk {
+  color: rgb(243, 26, 189);
+  text-align: center;
+}
+
+.charsheet div.sheet-edit-character-core-stats b {  
+  color:#278bce;  
+  text-align: center;
+}
+
+.charsheet div.sheet-edit-character-grid-section h3 {
+    grid-column: 1 / -1;    
+    text-align: center;
+    grid-row: 1;    
+}
+/* END OF CHARACTER EDIT PAGE */
+
+
+
+/* START OF PSIONICS EDIT PAGE */
+.charsheet .sheet-edit-psionics-grid-section {
+  display: grid;
+  grid-template-columns: 827px;
+  grid-template-areas: 
+    "life-energy life-energy life-energy life-energy"
+    "psi-buttons psi-buttons psi-buttons psi-buttons"
+    "edit-psionics edit-psionics edit-psionics edit-psionics"
+    "psi-sub-skills psi-sub-skills psi-sub-skills psi-sub-skills";
+}
+
+.sheet-edit-life-energy {
+  display: grid;
+  grid-area: life-energy;
+  width: 827px;  
+  grid-template-columns: 60px 60px 25px 60px 60px 52px 52px 52px 60px 52px 60px 52px 52px 52px;
+  grid-auto-rows: 28px;
+  grid-gap: 3px;  
+  font-size: small;
+}
+
+.sheet-edit-psi-buttons {
+  display: flexbox;
+  grid-area: psi-buttons;
+  width: 827px;
+  font-size: 16px;
+  grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px 60px;
+  grid-auto-rows: 28px;
+  grid-gap: auto;
+  padding: 3px;
+}
+
+.psionics-buttons h3 {
+  grid-column: 1 / -1;
+  text-align: center;
+  grid-row: 1;
+}
+
+.sheet-edit-psi-body-discipline {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 52px 60px 60px 60px 60px 60px 60px 60px 60px 60px;
+  grid-auto-rows: 28px;
+  grid-gap: auto;
+  font-size: small;
+}
+
+.sheet-edit-repeating-body-discipline {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto; 
+  /* grid-template-columns: 75px 120px 52px 52px 52px 52px 75px 75px 230px ; */
+  grid-auto-rows: 28px;
+  grid-gap: auto;
+  font-size: small;
+}
+
+.sheet-edit-psi-causation {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 41px 41px 41px 51px 35px 35px 35px 35px 35px 35px 35px 35px 35px 35px;
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  font-size: small;
+}
+
+.sheet-edit-repeating-causation {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 120px 110px 52px 90px 52px 75px 75px 190px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-clairvoyance {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;  
+  grid-template-columns: 60px 120px 52px 52px 60px 60px 90px 60px 60px 60px 60px;
+  grid-auto-rows: 25px;
+  grid-gap: auto;
+  text-align: center;  
+}
+
+.sheet-edit-repeating-clairvoyance {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 75px 100px 52px 52px 110px 52px 52px 75px 230px; 
+  grid-auto-rows: 25px;
+  grid-gap: 4px;  
+  font-size: small;
+}
+
+.sheet-edit-psi-deflection {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 120px 120px 120px 120px 120px 120px;
+  grid-auto-rows: 25px;
+  grid-gap: 2px;
+  text-align: center;
+  font-size: small;
+}
+
+.sheet-edit-repeating-deflection {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 110px 52px 52px 110px 60px 60px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-domination {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 120px 60px 60px 60px 60px 60px 120px;
+  grid-auto-rows: 28px;
+  grid-gap: auto;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-domination {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-energy-communion {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 60px 60px 60px 60px 120px 60px 60px; /* 60px 60px */
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-energy-communion {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-molecular-alteration {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 120px 75px 75px 75px 75px 75px 75px; /* 60px 60px */
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-molecular-alteration {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-pyrokinesis {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 120px 60px 60px 60px 60px 60px 60px; /* 60px 60px */
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-pyrokinesis {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-subatomic-alteration {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 50px 60px 60px 60px 50px 90px 60px 90px 60px; /* 60px */
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-subatomic-alteration {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-telekinesis {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 120px 60px 60px 60px 60px 60px 60px; /* 60px 60px */
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-telekinesis {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-edit-psi-anti-psionics {
+  grid-area: edit-psionics;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 60px 120px 120px 60px 60px 60px 60px 60px 60px; /* 60px 60px */
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  text-align: left;
+  font-size: small;
+}
+
+.sheet-edit-repeating-anti-psionics {
+  grid-area: psi-sub-skills;
+  display: grid;
+  width: 827px;
+  grid-template-columns: 70px 100px 52px 52px 110px 52px 52px 75px 230px;
+  grid-auto-rows: 25px;
+  grid-gap: 4px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-repeating-skills {
+  grid-area: psi-sub-skills;
+  display: flex;
+  grid-template-columns: 60px 100px 100px 522px;
+  grid-auto-rows: 28px;
+  grid-gap: 5px;
+}
+
+.edit-psi-bd h3 {
+  grid-area: edit-psionics;
+  grid-template-columns: auto;
+  /* grid-columns: 1 / 4; */
+  grid-auto-rows: 25px;
+  grid-gap: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+.sheet-psionics h3 {
+  grid-column: 1 / -1;
+  text-align: center;
+  grid-row: 1;
+}
+
+/* END OF PSIONICS EDIT PAGE */
+
+/* START OF SHIP PAGE */
+.sheet-edit-ship {
+  display: grid;
+  width: 100%;  
+  grid-gap: 2px;    
+  grid-template-columns: 275px 275px 277px; 
+  font-size: small;
+  grid-template-rows: auto;
+  grid-template-areas:
+  "health   health    ship"
+  "weapons  defenses  defenses"
+  "drive    drive     drive"
+  "equipment equipment equipment"
+}
+.sheet-ship-health {
+  grid-area: health;
+  display: grid;
+  width: 100%; /* Adjust the width to fill the available space */
+  box-sizing: border-box; 
+  height: auto;
+  text-align: center;  
+  grid-template-columns: 75px 60px 60px 52px 60px 60px 60px 60px 60px;  
+  grid-auto-rows: 28px;
+  font-size: small;  
+}
+  /*
+.sheet-ship-health {
+  grid-area: health;
+  display: grid;
+  width: 98%;  
+  height: auto;
+  text-align: left;
+  grid-gap: 1px;
+  grid-template-columns: 75px 75px 75px 52px 60px 60px 60px 60px 60px;  
+  grid-auto-rows: 28px;
+  font-size: small;  
+}
+*/
+.sheet-ship-weapons {
+  grid-area: weapons;
+  display: grid;
+  width: 98%;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 28px;
+  font-size: small;  
+}
+.sheet-ship-defenses {
+  grid-area: defenses;
+  display: grid;
+  width: 98%;
+  height: auto;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 28px;
+  font-size: small;
+}
+.sheet-ship {
+  grid-area: ship;
+  display: grid;
+  width: 267px; /* Adjust the width to match grid-template-columns */
+  grid-template-columns: 250px;
+  grid-template-rows: 28px;  
+  font-size: small;
+  box-sizing: border-box; /* Add this to include padding and border in total width and height */
+}
+/*
+.sheet-ship {
+  grid-area: ship;
+  display: grid;
+  width: 267px;  
+  grid-template-columns: 250px;
+  grid-template-rows: 28px;  
+  font-size: small;
+}
+*/
+.sheet-ship-drive{
+  grid-area: drive;
+  display: flexbox;
+  width: 810px;
+  height: auto;
+  grid-template-columns: 75px 75px 100px 120px 60px 60px 75px;
+  grid-template-rows: 28px;
+  font-size: small;
+}
+
+.sheet-weapon,
+.sheet-equipment {
+    display: none;
+}
+
+/* Updated the selector to be correct */
+.sheet-type:checked[value="1"] ~ .sheet-weapon {
+  display: grid;  
+  grid-template-columns: 80px 52px 75px 75px 52px 52px 52px 52px 52px 60px 60px 60px 52px 52px;
+  grid-template-rows: auto;    
+  grid-auto-rows: 28px;    
+  grid-gap: 3px;    
+  column-gap: 1px;  
+  color:#278bce;
+}
+
+.sheet-type:checked[value="0"] ~ .sheet-equipment {
+    display: grid; /* Updated from flexbox to flex */
+    /* Other styles remain the same */
+    text-align: center;
+    width: 98%;
+    grid-gap: auto;
+  /* overflow: scroll; */
+    height: auto;
+    grid-template-columns: 75px 200px 60px 60px 60px 200px;
+    grid-template-rows: 28px;
+    font-size: small;
+}
+
+
+/* START OF NPC SECTIONS */
+
+.sheet-npc-grid {
+  display: grid;
+  width: 827px;
+  grid-gap: 1px;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+  grid-template-rows: 28px;
+  font-size: smaller; 
+  grid-template-areas: 
+  "defense-header"
+  "defense"
+  "sheet"  
+  "attack-header""
+  "attack"
+  "notes"
+}
+
+.sheet-npc-defense-header {
+  grid-area: defense-header;
+  display: grid;
+  grid-template-columns: 75px 75px 52px 52px 52px 52px 52px 52px 52px 52px 52px 75px 75px;
+  grid-auto-rows: 28px;
+  grid-gap: 2px;
+  font-size: small;
+  padding-bottom: 5px;
+}
+
+.sheet-npc-defense {
+  grid-area: defense;
+  display: grid;
+  grid-template-columns: 60px 60px 52px 52px 52px 52px 52px 52px 52px 52px 52px 60px 60px;
+  grid-auto-rows: 25px;
+  grid-gap: 1px;
+  font-size: small;
+}
+
+.sheet-npc-attack-header {
+  grid-area: attack-header;
+  display: grid;
+  grid-template-columns: 60px 110px 100px 90px 60px 60px 60px 60px 60px 60px 52px 52px;
+  grid-auto-rows: 25px;
+  grid-gap: 1px;
+  font-size: smaller;
+}
+
+.sheet-npc-attack{
+  grid-area: attack;
+  display: grid;
+  grid-template-columns: 60px 110px 100px 90px 60px 60px 60px 60px 60px 60px 52px 52px;
+  grid-auto-rows: 25px;
+  grid-gap: 1px;
+  font-size: smaller;
+}
+
+.sheet-npc-notes {
+  grid-area: notes;
+  display: grid;
+  grid-template-columns: 800px;
+  grid-auto-rows: 25px;
+  grid-gap: 1px;
+  font-size: small;
+}
+
+/* END OF NPC SECTIONS */
+.sheet-psi-scrollable-130 {
+  overflow: auto;
+  height: 130px;
+}
+
+.sheet-psi-scrollable-200 {
+  overflow: auto;
+  height: 200px;
+}
+
+
+/* // BUTTONS CSS */
+
+.sheet-scrollable-400 {
+  overflow: auto;
+  height: 400px;
+}
+
+.sheet-combat-scrollable-300 {
+    overflow: auto;
+    height: 300px;
+  }
+
+button[type="roll"].sheet-button-roll:before {
+  content: "t ";
+}
+
+button[type="roll"].sheet-ship-button {
+  content: "";
+  text-shadow: none;
+  color: #278bce;
+  font-size: 8px;
+  text-align: left;
+  line-height: 20px;
+  height: 20px;
+  width: 52px;
+  /* min-width: 50px; */  
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-ship-button:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-ship-button:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll {
+  content: "";
+  text-shadow: none;
+  color: #278bce;
+  font-size: 11px;
+  text-align: center;
+  line-height: 20px;
+  height: 20px;
+  width: 52px;
+  /* min-width: 50px; */
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-roll {
+  content: "";
+  text-shadow: none;
+  color: #5ed0ea;
+  font-size: 12px;
+  text-align: center;
+  line-height: 10px;
+  height: 16px;
+  width: auto;
+  min-width: 50px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-roll:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-roll:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll-skills:before {
+  content: "t ";
+}
+
+button[type="roll"].sheet-button-roll-skills {
+  content: "";
+  text-shadow: none;
+  color: #278bce;
+  font-size: 10px;
+  text-align: center;
+  line-height: 20px;
+  height: 20px;
+  width: 52px;
+  /* min-width: 50px; */  
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll-skills:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll-skills:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="roll"].sheet-button-roll2:before {
+    content: "t ";
+  }
+  
+  button[type="roll"].sheet-button-roll2 {
+    content: "";
+    text-shadow: none;
+    color: #278bce;
+    font-size: 24px;
+    text-align: center;
+    line-height: 1px;
+    height: 20px;
+    width: 60px;    
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px outset rgba(255, 255, 255, 0.2);
+  }
+  
+  button[type="roll"].sheet-button-roll2:hover {
+    text-shadow: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px inset rgba(255, 255, 255, 0.2);
+  }
+  
+  button[type="roll"].sheet-button-roll2:focus {
+    text-shadow: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px inset rgba(255, 255, 255, 0.2);
+  }
+  
+  button[type="action"].sheet-button-roll2 {
+    content: "";
+    text-shadow: none;
+    color: #5ed0ea;
+    font-size: 10px;
+    text-align: center;
+    line-height: 10px;
+    height: 10px;
+    width: 60px;    
+    padding: 5px;    
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px outset rgba(255, 255, 255, 0.2);
+  }
+  
+  button[type="action"].sheet-button-roll2:hover {
+    text-shadow: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px inset rgba(255, 255, 255, 0.2);
+  }
+  
+  button[type="action"].sheet-button-roll2:focus {
+    text-shadow: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px inset rgba(255, 255, 255, 0.2);
+  }
+
+  /* Skills Buttons on main page */
+button[type="roll"].sheet-button-rolls:before {
+  content: "t ";
+}
+
+button[type="roll"].sheet-button-rolls {
+  content: "";
+  text-shadow: none;
+  color: #2788ce;
+  font-size: small;
+  text-align: center;
+  line-height: 10px;
+  height: 8px;
+  width: 60px;
+  min-width: 25px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgb(243, 7, 7);
+}
+
+button[type="roll"].sheet-button-rolls:hover {
+  text-shadow: none;
+  background: rgba(229, 69, 69, 0.15);
+  border: 1px inset rgba(233, 8, 8, 0.607);
+}
+
+button[type="roll"].sheet-button-rolls:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+
+/* Clairvoyance Buttons No Dice, Just Names */
+
+button[type="roll"].sheet-button-rollc:before {
+  content: "t ";
+}
+
+/* Equipped Buttons */
+button[type="roll"].sheet-button-rollw:before {
+  content: "t ";
+}
+
+button[type="roll"].sheet-button-rollw {
+  content: "";
+  text-shadow: none;
+  color: #2788ce;
+  font-size: small;
+  text-align: center;
+  line-height: 20px;
+  height: 20px;
+  width: 65px;
+  min-width: 25px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgb(243, 7, 7);
+}
+
+button[type="roll"].sheet-button-rollw:hover {
+  text-shadow: none;
+  background: rgba(229, 69, 69, 0.15);
+  border: 1px inset rgba(233, 8, 8, 0.607);
+}
+
+button[type="roll"].sheet-button-rollw:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-rollw {
+  content: "";
+  text-shadow: none;
+  color: #5ed0ea;
+  font-size: 8px;
+  text-align: center;
+  line-height: 10px;
+  height: 16px;
+  width: 6.5em;
+  min-width: 50px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-rollw:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-rollw:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+/* Clairvoyance Buttons No Dice, Just Names */
+
+button[type="roll"].sheet-button-rollc:before {
+  content: "t ";
+}
+
+button[type="roll"].sheet-button-rollc {
+  content: "";
+  text-shadow: none;
+  color: #2788ce;
+  font-size: small;
+  text-align: left;
+  line-height: 0px;
+  height: 18px;
+  width: 50px;
+  min-width: 25px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset #2788ce;
+}
+
+button[type="roll"].sheet-button-rollc:hover {
+  text-shadow: none;
+  background: rgba(229, 69, 69, 0.15);
+  border: 1px inset #2788ce;
+}
+
+button[type="roll"].sheet-button-rollc:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset #2788ce;
+}
+
+button[type="action"].sheet-button-rollc {
+  content: "";
+  text-shadow: none;
+  color: #000000;
+  font-size: 8px;
+  text-align: left;
+  line-height: 10px;
+  height: 16px;
+  width: 6.5em;
+  min-width: 50px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px outset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-rollc:hover {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+
+button[type="action"].sheet-button-rollc:focus {
+  text-shadow: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px inset rgba(255, 255, 255, 0.2);
+}
+/*
+.sheet-button-roll {
+    background-color: rgb(red, green, blue)  ;
+    font-family: dicefontd6;
+    content: "l"; 
+    color: #500000;
+    width: 2em;
+}
+*/
+.sheet-block-a,
+.charsheet .sheet-block-switch:checked ~ .sheet-block-b {
+  display: block;
+}
+
+.charsheet .sheet-block-b,
+.charsheet .sheet-block-switch:checked ~ .sheet-block-a {
+  display: none;
+}
